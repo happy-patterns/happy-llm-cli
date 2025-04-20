@@ -1,7 +1,7 @@
 # Use a specific Fedora base image for consistency
 FROM fedora:41
 
-# Set labels (optional metadata)
+# Set labels
 LABEL maintainer="Happy Patterns <jeffrey@happy-patterns.com" \
   description="Development environment for Happy Patterns LLM CLI tool"
 
@@ -29,23 +29,3 @@ RUN pip install --no-cache-dir -r requirements.txt
 
 # Copy application code
 COPY --chown=${USERNAME}:${USERNAME} . .
-EOL
-
-# Create .containerignore
-cat > .containerignore << 'EOL'
-.git
-.venv
-.vscode
-__pycache__
-*.pyc
-*.log
-.env
-EOL
-
-# Create initial requirements.txt
-cat > requirements.txt << 'EOL'
-typer[all]>=0.15.2
-python-dotenv>=1.1.0
-openai>=1.75.0
-requests>=2.32.0
-pytest>=8.3.5
