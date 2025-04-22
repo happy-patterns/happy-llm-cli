@@ -1,0 +1,13 @@
+id: app_4.2.3
+name: Write rate_limit.py File
+status: PENDING
+type: MANUAL
+depends_on:
+- app_4.2.2
+- app_1.2.2
+manual_instructions:
+- 'Create `happy_llm_cli/utils/rate_limit.py` and write the reviewed
+
+  `retry_api_call` function code (including imports, constants).'
+outputs:
+- '`happy_llm_cli/utils/rate_limit.py` created with `retry_api_call` function.'

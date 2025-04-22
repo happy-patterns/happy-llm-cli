@@ -1,0 +1,27 @@
+ai_details:
+  model: o4-mini
+  prompt: 'In `orchestration/run.py`, implement handling for tasks of type `AI_ASSISTED`:
+
+    - Load `prompt_template` and `input_context` from the task detail file.
+
+    - Render a prompt (inline or via Jinja2) based on these fields.
+
+    - Call a function `call_openai_api(prompt, model)` to execute the API request.
+
+    - Display the LLM response, then show `review_points`, if any.
+
+    - Prompt the user to accept (`y`), retry (`r`), mark error (`e`), or manual edit
+    (`m`).
+
+    - Update `status` and record the `llm_response` and any user resolution in the
+    detail YAML.
+
+    '
+depends_on:
+- orchestrate_5_logging
+id: orchestrate_6_ai_handler
+name: Implement AI task handler
+outputs:
+- AI task handler implemented in `orchestration/run.py`.
+status: DONE
+type: AI_ASSISTED

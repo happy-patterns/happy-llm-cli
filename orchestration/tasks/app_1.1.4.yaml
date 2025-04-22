@@ -1,0 +1,24 @@
+depends_on:
+- app_1.1.2
+id: app_1.1.4
+manual_instructions:
+- 'Determine the appropriate `podman run` command including:
+
+  - `-v .:/home/devuser/app:Z`
+
+  - `--env-file .env`
+
+  - `-it --rm`
+
+  - `--name happy_llm-dev-instance`
+
+  Optionally add a VS Code Remote Containers config
+
+  (`.devcontainer/devcontainer.json`). Document this
+
+  in `CONTRIBUTING.md` or the development section of `README.md`.'
+name: Document/Configure Container Runtime
+outputs:
+- Documented command or config for running the dev container.
+status: DONE
+type: MANUAL

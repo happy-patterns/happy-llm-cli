@@ -1,0 +1,228 @@
+id: 4
+name: "Phase 3: Implement Basic Utilities (Granular)"
+description: >
+  Develop shared utility functions for configuration loading and simple
+  API call retry logic. Granular breakdown.
+model: null
+prompt_template: null
+
+subtasks:
+  - id: 4.1.1
+    name: "Generate load_api_key Function Code Snippet"
+    details: |
+      Use AI to generate the Python code snippet for the `load_api_key`
+      function, including imports (`os`, `dotenv`) and logic to load
+      and validate the key.
+    ai_assisted: true
+    model: "gpt-4.1-mini"
+    prompt_template: |
+      Goal: Generate ONLY the Python code snippet for the `load_api_key` function.
+      Context:
+        - Target file: `happy_llm_cli/utils/config.py`.
+        - Function signature: `load_api_key(provider_name: str) -> str`.
+        - Needs to call `load_dotenv()`.
+        - Construct env var name `<PROVIDER>_API_KEY`.
+        - Use `os.getenv()` and validate (raise `ValueError` if missing).
+      Instructions:
+        - Import `os` and `load_dotenv`.
+        - Define the function and implement logic.
+        - Include a docstring.
+        - DO NOT include other code.
+      Output Format: Python code snippet with imports and function.
+    dependencies:
+      - 1.2.2
+    outputs:
+      - "Python code snippet for `load_api_key` generated."
+
+  - id: 4.1.2
+    name: "Review load_api_key Code Snippet"
+    details: |
+      Manually review the generated snippet:
+        - Verify imports (`os`, `dotenv`).
+        - Check signature, docstring, `load_dotenv()` call.
+        - Validate env var name construction and `os.getenv()` logic.
+        - Ensure simplicity without extra logic.
+    ai_assisted: false
+    dependencies:
+      - 4.1.1
+    outputs:
+      - "Code snippet for `load_api_key` reviewed and approved/corrected."
+
+  - id: 4.1.3
+    name: "Ensure `python-dotenv` Dependency"
+    details: |
+      Verify that `python-dotenv` is listed in the `[project.dependencies]` section of `pyproject.toml`.
+      If missing, add it, then reinstall dependencies (e.g., `pip install -e .` or rebuild the container).
+    ai_assisted: false
+    dependencies:
+      - 4.1.2
+    outputs:
+      - "`python-dotenv` confirmed/added to project dependencies."
+
+  - id: 4.1.4
+    name: "Write config.py File"
+    details: |
+      Create `happy_llm_cli/utils/config.py` and write the reviewed
+      `load_api_key` function code (including imports).
+    ai_assisted: false
+    dependencies:
+      - 4.1.2
+      - 4.1.3
+      - 1.2.2
+    outputs:
+      - "`happy_llm_cli/utils/config.py` created with `load_api_key` function."
+
+  - id: 4.1.5
+    name: "Commit Configuration Utility"
+    details: |
+      Stage `happy_llm_cli/utils/config.py` and any updates to `pyproject.toml`.
+      Run:
+        git add happy_llm_cli/utils/config.py pyproject.toml
+        git commit -m "feat: Add configuration loading utility (load_api_key)"
+    ai_assisted: false
+    dependencies:
+      - 4.1.4
+      - 1.3.6
+    outputs:
+      - "Configuration utility (`config.py`) committed to Git."
+
+  - id: 4.2.1
+    name: "Generate retry_api_call Function Code Snippet"
+    details: |
+      Use AI to generate the Python code snippet for the `retry_api_call`
+      function, including imports (`time`, `logging`, `typing`), constants,
+      and retry logic.
+    ai_assisted: true
+    model: "o4-mini"
+    prompt_template: |
+      Goal: Generate ONLY the Python code snippet for the `retry_api_call` utility.
+      Context:
+        - Target file: `happy_llm_cli/utils/rate_limit.py`.
+        - Signature: `retry_api_call(func: Callable[[], T], retries: int = DEFAULT_MAX_RETRIES, delay: int = DEFAULT_RETRY_DELAY_SECONDS, retry_on_exception: Type[Exception] = RateLimitError) -> T`.
+        - Defaults: `DEFAULT_MAX_RETRIES = 3`, `DEFAULT_RETRY_DELAY_SECONDS = 2`.
+        - Logic: Retry on `retry_on_exception`, log attempts, re-raise others, re-raise after max retries.
+      Instructions:
+        - Import `time`, `logging`, `Callable`, `TypeVar`, `Type`, `RateLimitError`.
+        - Define `T`, constants, logger, and function with loop and sleep.
+        - Use `logger` for retry and failure messages.
+        - DO NOT include other code.
+      Output Format: Python code snippet with imports, constants, type var, logger, function.
+    dependencies:
+      - 1.2.2
+      - 2.4.3
+    outputs:
+      - "Python code snippet for `retry_api_call` generated."
+
+  - id: 4.2.2
+    name: "Review retry_api_call Code Snippet"
+    details: |
+      Manually review the generated snippet:
+        - Verify imports, constants, and type var.
+        - Check function signature and retry loop logic.
+        - Confirm `time.sleep`, exception handling, and logger usage.
+        - Ensure correct re-raising behavior.
+    ai_assisted: false
+    dependencies:
+      - 4.2.1
+    outputs:
+      - "Code snippet for `retry_api_call` reviewed and approved/corrected."
+
+  - id: 4.2.3
+    name: "Write rate_limit.py File"
+    details: |
+      Create `happy_llm_cli/utils/rate_limit.py` and write the reviewed
+      `retry_api_call` function code (including imports, constants).
+    ai_assisted: false
+    dependencies:
+      - 4.2.2
+      - 1.2.2
+    outputs:
+      - "`happy_llm_cli/utils/rate_limit.py` created with `retry_api_call` function."
+
+  - id: 4.2.4
+    name: "Commit Rate Limit Utility"
+    details: |
+      Stage and commit `retry_api_call` file:
+        git add happy_llm_cli/utils/rate_limit.py
+        git commit -m "feat: Add simple API call retry utility (retry_api_call)"
+    ai_assisted: false
+    dependencies:
+      - 4.2.3
+      - 1.3.6
+    outputs:
+      - "Rate limit utility (`rate_limit.py`) committed to Git."
+
+  - id: 4.3.1
+    name: "[Optional] Generate format_response Function Code Snippet"
+    details: |
+      If proceeding: Use AI to generate the placeholder `format_response` function.
+    ai_assisted: true
+    model: "gpt-4.1-mini"
+    prompt_template: |
+      Goal: Generate ONLY the Python code snippet for the placeholder `format_response` function.
+      Context:
+        - Target file: `happy_llm_cli/utils/formatter.py`.
+        - Signature: `format_response(text: str) -> str`.
+        - Implementation: `return text.strip()`.
+      Instructions:
+        - Define the function and its body.
+        - Add a docstring indicating placeholder.
+        - DO NOT include imports.
+      Output Format: Python code snippet for the function.
+    dependencies:
+      - 1.2.2
+    outputs:
+      - "[Optional] Python code snippet for `format_response` generated."
+
+  - id: 4.3.2
+    name: "[Optional] Review format_response Code Snippet"
+    details: |
+      If proceeding: Manually review the snippet:
+        - Verify function signature and simple implementation.
+        - Ensure no imports or extra code.
+    ai_assisted: false
+    dependencies:
+      - 4.3.1
+    outputs:
+      - "[Optional] Code snippet for `format_response` reviewed and approved/corrected."
+
+  - id: 4.3.3
+    name: "[Optional] Write formatter.py File"
+    details: |
+      If proceeding:
+        Create `happy_llm_cli/utils/formatter.py` and write the reviewed
+        `format_response` function code.
+    ai_assisted: false
+    dependencies:
+      - 4.3.2
+      - 1.2.2
+    outputs:
+      - "[Optional] `happy_llm_cli/utils/formatter.py` created with `format_response` function."
+
+  - id: 4.3.4
+    name: "[Optional] Commit Formatter Utility"
+    details: |
+      If proceeding:
+        Stage and commit `formatter.py`:
+          git add happy_llm_cli/utils/formatter.py
+          git commit -m "feat(enhancement): Add placeholder response formatter utility"
+    ai_assisted: false
+    dependencies:
+      - 4.3.3
+      - 1.3.6
+    outputs:
+      - "[Optional] Formatter utility (`formatter.py`) committed to Git."
+
+fallbacks:
+  - task_id: 4.x.1
+    strategy: "Re-prompt or manually write the required code snippet."
+  - task_id: 4.x.2
+    strategy: "Correct the generated snippet manually before writing."
+  - task_id: 4.1.3
+    strategy: "Manually update dependencies and rebuild environment."
+
+outputs:
+  - "Utility function `load_api_key` implemented, dependencies managed, and committed."
+  - "Utility function `retry_api_call` implemented and committed."
+  - "(Optional) `format_response` placeholder utility implemented and committed."
+  - "Core reusable utilities are implemented and version controlled, ready for Phase 4."

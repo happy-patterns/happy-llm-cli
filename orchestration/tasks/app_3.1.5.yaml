@@ -1,0 +1,13 @@
+id: app_3.1.5
+name: Commit OpenAIProvider Skeleton
+status: PENDING
+type: MANUAL
+depends_on:
+- app_3.1.3
+- app_3.1.4
+- app_1.3.6
+manual_instructions:
+- "Stage and commit skeleton files:\nRun:\n  git add happy_llm_cli/providers/openai_provider.py\
+  \ requirements.txt\n  git commit -m \"feat: Add OpenAIProvider skeleton\""
+outputs:
+- '`OpenAIProvider` skeleton committed.'

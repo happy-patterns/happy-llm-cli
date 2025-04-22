@@ -1,0 +1,12 @@
+id: app_4.2.2
+name: Review retry_api_call Code Snippet
+status: PENDING
+type: MANUAL
+depends_on:
+- app_4.2.1
+manual_instructions:
+- "Manually review the generated snippet:\n  - Verify imports, constants, and type\
+  \ var.\n  - Check function signature and retry loop logic.\n  - Confirm `time.sleep`,\
+  \ exception handling, and logger usage.\n  - Ensure correct re-raising behavior."
+outputs:
+- Code snippet for `retry_api_call` reviewed and approved/corrected.

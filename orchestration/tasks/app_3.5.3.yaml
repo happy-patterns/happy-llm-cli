@@ -1,0 +1,11 @@
+id: app_3.5.3
+name: '[Optional] Integrate Logging into OpenAIProvider'
+status: PENDING
+type: MANUAL
+depends_on:
+- app_3.4.3
+- app_3.5.2
+manual_instructions:
+- Insert reviewed logging statements into `openai_provider.py`.
+outputs:
+- Logging integrated in `openai_provider.py`.

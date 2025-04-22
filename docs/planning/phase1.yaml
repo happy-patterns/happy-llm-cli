@@ -1,0 +1,312 @@
+id: 2
+name: "Phase 1: Define Core Abstraction & Data Models (Granular)"
+description: >
+  Implement the core abstract base class for provider adapters and the
+  associated data classes for requests and responses. Optionally, set up
+  a provider factory and custom exceptions. Granular breakdown.
+model: null
+prompt_template: null
+
+subtasks:
+  - id: 2.1.1
+    name: "Generate AbstractProviderAdapter Code Snippet"
+    details: |
+      Use AI to generate the Python code snippet for the
+      `AbstractProviderAdapter` class, including imports (`abc`)
+      and the `complete_chat` abstract method signature using
+      forward references ('ChatRequest', 'ChatResponse').
+    ai_assisted: true
+    model: "gpt-4.1-mini"
+    prompt_template: |
+      Goal: Generate ONLY the Python code snippet for an
+      Abstract Base Class `AbstractProviderAdapter`.
+      Context:
+        - Target file: `happy_llm_cli/providers/base.py`.
+        - Class should inherit from `abc.ABC`.
+        - Requires one abstract method: `complete_chat`.
+        - Method signature uses forward references:
+          `request: 'ChatRequest'`, `-> 'ChatResponse'`.
+        - Naming conventions: Class `AbstractProviderAdapter`, method
+          `complete_chat`.
+      Instructions:
+        - Import `ABC` and `abstractmethod` from `abc`.
+        - Define the class `AbstractProviderAdapter(ABC)`.
+        - Define the abstract method
+          `complete_chat(self, request: 'ChatRequest') -> 'ChatResponse':`
+          using `@abstractmethod`.
+        - Include a simple docstring for the method.
+        - Use `pass` as the method body.
+        - DO NOT include data class definitions or any other code in this snippet.
+      Output Format: Python code snippet for the class definition only.
+    dependencies:
+      - 1.2.2
+    outputs:
+      - "Python code snippet for `AbstractProviderAdapter` generated."
+
+  - id: 2.1.2
+    name: "Review AbstractProviderAdapter Code Snippet"
+    details: |
+      Manually review the generated code snippet against the requirements
+      and review points:
+        - Verify exact class name: `AbstractProviderAdapter`.
+        - Verify inheritance from `abc.ABC`.
+        - Verify exact method signature:
+          `complete_chat(self, request: 'ChatRequest') -> 'ChatResponse'`.
+        - Verify `@abstractmethod` decorator is used.
+        - Verify necessary imports (`abc`).
+        - Ensure no extra methods, attributes, or implementation logic were added.
+        - Check forward references ('ChatRequest', 'ChatResponse') are used correctly.
+    ai_assisted: false
+    dependencies:
+      - 2.1.1
+    outputs:
+      - "Code snippet for `AbstractProviderAdapter` reviewed and approved/corrected."
+
+  - id: 2.1.3
+    name: "Write AbstractProviderAdapter to base.py"
+    details: |
+      Create or open the file `happy_llm_cli/providers/base.py`.
+      Write the reviewed `AbstractProviderAdapter` code snippet
+      (including imports) into the file.
+    ai_assisted: false
+    dependencies:
+      - 2.1.2
+      - 1.2.2
+    outputs:
+      - "`happy_llm_cli/providers/base.py` created/updated with `AbstractProviderAdapter` definition."
+
+  - id: 2.2.1
+    name: "Generate Core Data Classes Code Snippet"
+    details: |
+      Use AI to generate the Python code snippet for the `ChatMessage`,
+      `ChatRequest`, and `ChatResponse` dataclasses, including imports
+      (`dataclasses`, `typing`).
+    ai_assisted: true
+    model: "gpt-4.1-mini"
+    prompt_template: |
+      Goal: Generate ONLY the Python code snippet for three data classes:
+      `ChatMessage`, `ChatRequest`, and `ChatResponse`.
+      Context:
+        - Target file: `happy_llm_cli/providers/base.py`.
+        - Use standard Python `@dataclass`.
+        - Naming convention: PascalCase for classes, snake_case for fields.
+      Instructions:
+        - Import `dataclass` from `dataclasses`.
+        - Import necessary types (`List`, `Optional`, `Dict`, `Any`) from `typing`.
+        - Define `ChatMessage(role: str, content: str)`.
+        - Define `ChatRequest(messages: List['ChatMessage'],
+          model: Optional[str] = None)`. Note: Use forward reference
+          'ChatMessage' if defined in the same pass or ensure order.
+        - Define `ChatResponse(text: str,
+          usage: Optional[Dict[str, Any]] = None,
+          error: Optional[str] = None)`.
+        - Use `@dataclass` decorator for all three.
+        - DO NOT include the `AbstractProviderAdapter` class or any other code in this snippet.
+      Output Format: Python code snippet containing the three data class definitions and necessary imports.
+    dependencies:
+      - 1.2.2
+    outputs:
+      - "Python code snippet for core data classes generated."
+
+  - id: 2.2.2
+    name: "Review Core Data Classes Code Snippet"
+    details: |
+      Manually review the generated code snippet against requirements and
+      review points:
+        - Verify exact class names: `ChatMessage`, `ChatRequest`, `ChatResponse`.
+        - Verify `@dataclass` decorator is used for all.
+        - Verify all specified fields exist with correct names (snake_case)
+          and types (including `List`, `Optional`, `Dict`, `Any`, forward references).
+        - Verify default values (`= None`).
+        - Ensure no extra fields or methods were added.
+        - Check necessary imports (`dataclasses`, `typing`).
+    ai_assisted: false
+    dependencies:
+      - 2.2.1
+    outputs:
+      - "Code snippet for data classes reviewed and approved/corrected."
+
+  - id: 2.2.3
+    name: "Write Data Classes to base.py"
+    details: |
+      Open `happy_llm_cli/providers/base.py`.
+      Append the reviewed data class code snippet (including imports,
+      potentially merging with existing imports) into the file.
+      Ensure imports are handled correctly (e.g., at the top).
+      Ensure class definitions are correctly ordered if not using forward references everywhere.
+    ai_assisted: false
+    dependencies:
+      - 2.1.3
+      - 2.2.2
+    outputs:
+      - "`happy_llm_cli/providers/base.py` updated with data class definitions."
+
+  - id: 2.2.4
+    name: "Commit Core Abstractions (base.py)"
+    details: |
+      Stage the changes to `happy_llm_cli/providers/base.py`.
+      Run:
+        git add happy_llm_cli/providers/base.py
+        git commit -m "feat: Define core provider abstractions and data models"
+    ai_assisted: false
+    dependencies:
+      - 2.2.3
+      - 1.3.6
+    outputs:
+      - "Changes to `base.py` committed to Git."
+
+  - id: 2.3.1
+    name: "[Optional] Generate Provider Factory Code Snippet"
+    details: |
+      If proceeding with enhancement: Use AI to generate the Python code snippet
+      for the `get_provider` factory function.
+    ai_assisted: true
+    model: "o4-mini"
+    prompt_template: |
+      Goal: Generate ONLY the Python code snippet for a simple factory function `get_provider`.
+      Context:
+        - Target file: `happy_llm_cli/providers/factory.py`.
+        - Returns: `AbstractProviderAdapter` instance.
+        - Inputs: `provider_name: str`, `config: Dict[str, str]`.
+        - Logic: Handle 'openai' by instantiating `OpenAIProvider`
+          (assume it exists); raise `NotImplementedError` otherwise.
+          Include basic API key check from config.
+        - Naming: Function `get_provider`, classes `AbstractProviderAdapter`, `OpenAIProvider`.
+      Instructions:
+        - Import `AbstractProviderAdapter` from `..base`.
+        - Import `OpenAIProvider` from `..openai_provider`.
+        - Import `Dict` from `typing`.
+        - Define `get_provider(provider_name: str, config: Dict[str, str]) -> AbstractProviderAdapter`.
+        - Implement minimal `if/else` logic for 'openai' vs. others.
+        - Include `api_key = config.get('api_key')` and `if not api_key: raise ValueError(...)`.
+        - Instantiate `OpenAIProvider` correctly.
+        - Raise `NotImplementedError` for unknown providers.
+        - DO NOT include any other code.
+      Output Format: Python code snippet for the factory function and imports.
+    dependencies:
+      - 2.1.3
+    outputs:
+      - "[Optional] Python code snippet for `get_provider` factory generated."
+
+  - id: 2.3.2
+    name: "[Optional] Review Provider Factory Code Snippet"
+    details: |
+      If proceeding: Manually review the generated factory code snippet against
+      requirements and review points:
+        - Check signature, imports, logic for 'openai', `NotImplementedError` handling,
+          config extraction/validation.
+        - Ensure minimalism.
+    ai_assisted: false
+    dependencies:
+      - 2.3.1
+    outputs:
+      - "[Optional] Code snippet for factory reviewed and approved/corrected."
+
+  - id: 2.3.3
+    name: "[Optional] Write Provider Factory File"
+    details: |
+      If proceeding:
+        - Create `happy_llm_cli/providers/factory.py`.
+        - Write the reviewed factory function code into the file.
+    ai_assisted: false
+    dependencies:
+      - 2.3.2
+      - 1.2.2
+    outputs:
+      - "[Optional] `happy_llm_cli/providers/factory.py` created with factory function."
+
+  - id: 2.3.4
+    name: "[Optional] Commit Provider Factory"
+    details: |
+      If proceeding:
+        - Stage `happy_llm_cli/providers/factory.py`.
+        - Run:
+          git add happy_llm_cli/providers/factory.py
+          git commit -m "feat(enhancement): Add provider factory"
+    ai_assisted: false
+    dependencies:
+      - 2.3.3
+      - 1.3.6
+    outputs:
+      - "[Optional] Provider factory committed to Git."
+
+  - id: 2.4.1
+    name: "[Optional] Generate Provider Exceptions Code Snippet"
+    details: |
+      If proceeding with enhancement: Use AI to generate Python code snippet
+      for custom exceptions (`ProviderError`, `AuthenticationError`, etc.).
+    ai_assisted: true
+    model: "gpt-4.1-mini"
+    prompt_template: |
+      Goal: Generate ONLY the Python code snippet for custom exception classes.
+      Context:
+        - Target file: `happy_llm_cli/providers/exceptions.py`.
+        - Required exceptions: `ProviderError(Exception)`,
+          `AuthenticationError(ProviderError)`,
+          `RateLimitError(ProviderError)`,
+          `ProviderResponseError(ProviderError)`.
+        - Naming: PascalCase.
+      Instructions:
+        - Define the four specified exception classes with the correct inheritance.
+        - Keep definitions minimal (`pass` or simple `__init__(self, message=None)`).
+        - DO NOT include any other code.
+      Output Format: Python code snippet for the exception class definitions.
+    dependencies:
+      - 1.2.2
+    outputs:
+      - "[Optional] Python code snippet for custom exceptions generated."
+
+  - id: 2.4.2
+    name: "[Optional] Review Provider Exceptions Code Snippet"
+    details: |
+      If proceeding: Manually review the generated exception code snippet:
+        - Verify class names, inheritance, and minimality.
+    ai_assisted: false
+    dependencies:
+      - 2.4.1
+    outputs:
+      - "[Optional] Code snippet for exceptions reviewed and approved/corrected."
+
+  - id: 2.4.3
+    name: "[Optional] Write Provider Exceptions File"
+    details: |
+      If proceeding:
+        - Create `happy_llm_cli/providers/exceptions.py`.
+        - Write the reviewed exception classes code into the file.
+    ai_assisted: false
+    dependencies:
+      - 2.4.2
+      - 1.2.2
+    outputs:
+      - "[Optional] `happy_llm_cli/providers/exceptions.py` created with exception classes."
+
+  - id: 2.4.4
+    name: "[Optional] Commit Provider Exceptions"
+    details: |
+      If proceeding:
+        - Stage `happy_llm_cli/providers/exceptions.py`.
+        - Run:
+          git add happy_llm_cli/providers/exceptions.py
+          git commit -m "feat(enhancement): Add custom provider exceptions"
+    ai_assisted: false
+    dependencies:
+      - 2.4.3
+      - 1.3.6
+    outputs:
+      - "[Optional] Provider exceptions committed to Git."
+
+fallbacks:
+  - task_id: 2.1.1
+    strategy: "Re-prompt with more specific constraints or manually write the simple ABC code."
+  - task_id: 2.1.2
+    strategy: "Correct the code snippet manually before writing to file."
+  - task_id: 2.2.1
+    strategy: "Re-prompt or manually write the simple dataclass code."
+  - task_id: 2.2.2
+    strategy: "Correct the code snippet manually before writing to file."
+
+outputs:
+  - "`happy_llm_cli/providers/base.py` exists with reviewed definitions for `AbstractProviderAdapter` and core data classes (`ChatMessage`, etc.), committed to Git."
+  - "(Optional) `happy_llm_cli/providers/factory.py` exists with reviewed factory function, committed to Git."
+  - "(Optional) `happy_llm_cli/providers/exceptions.py` exists with reviewed custom exceptions, committed to Git."
+  - "The project has the necessary interfaces and data models implemented and version controlled, ready for Phase 2."

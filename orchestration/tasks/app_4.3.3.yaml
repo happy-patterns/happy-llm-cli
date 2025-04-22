@@ -1,0 +1,12 @@
+id: app_4.3.3
+name: '[Optional] Write formatter.py File'
+status: PENDING
+type: MANUAL
+depends_on:
+- app_4.3.2
+- app_1.2.2
+manual_instructions:
+- "If proceeding:\n  Create `happy_llm_cli/utils/formatter.py` and write the reviewed\n\
+  \  `format_response` function code."
+outputs:
+- '[Optional] `happy_llm_cli/utils/formatter.py` created with `format_response` function.'

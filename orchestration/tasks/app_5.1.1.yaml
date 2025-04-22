@@ -1,0 +1,21 @@
+id: app_5.1.1
+name: Generate Typer App Skeleton Code Snippet
+status: PENDING
+type: AI_ASSISTED
+depends_on:
+- app_1.2.2
+ai_details:
+  model: gpt-4.1-mini
+  prompt: "Goal: Generate ONLY the Python code snippet for the basic\nTyper CLI structure.\n\
+    Context:\n  - Target file: `happy_llm_cli/cli.py`.\n  - Need `typer.Typer()` instance\
+    \ named `app`.\n  - Need `chat` command function decorated with `@app.command()`.\n\
+    \  - Chat signature with `prompt: str = typer.Argument(...)`,\n    `provider:\
+    \ Optional[str] = typer.Option(\"openai\", \"--provider\", \"-p\", help=...)`,\n\
+    \    `model: Optional[str] = typer.Option(None, \"--model\", \"-m\", help=...)`.\n\
+    \  - Include standard `if __name__ == \"__main__\":` block calling `app()`.\n\
+    Instructions:\n  - Import `typer` and `Optional` from `typing`.\n  - Define `app\
+    \ = typer.Typer()`.\n  - Define `chat` function with placeholder body (`pass`).\n\
+    \  - Add `if __name__ == \"__main__\": app()`.\nOutput Format: Python code snippet\
+    \ for the Typer structure."
+outputs:
+- Python code snippet for Typer skeleton generated.

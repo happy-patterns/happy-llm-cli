@@ -1,0 +1,14 @@
+id: app_5.2.4
+name: Generate Config Loading Code Snippet
+status: PENDING
+type: AI_ASSISTED
+depends_on:
+- app_4.1.4
+ai_details:
+  model: gpt-4.1-mini
+  prompt: "Goal: Generate ONLY the Python code snippet for loading the API key\ninside\
+    \ `chat`.\nContext:\n  - Use `load_api_key(provider)`.\n  - Handle `ValueError`\
+    \ with `typer.secho` and `typer.Exit`.\nInstructions:\n  - Write the try/except\
+    \ block.\nOutput Format: Python code snippet for the try/except."
+outputs:
+- Python code snippet for config loading generated.

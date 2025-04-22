@@ -1,0 +1,11 @@
+id: app_5.3.3
+name: '[Optional] Review Rich Status Code Snippet'
+status: PENDING
+type: MANUAL
+depends_on:
+- app_5.3.2
+manual_instructions:
+- "If proceeding: Manually review the snippet:\n  - Check import and `with Status`\
+  \ syntax.\n  - Ensure correct indentation."
+outputs:
+- '[Optional] Code snippet for `rich.status` reviewed and approved/corrected.'

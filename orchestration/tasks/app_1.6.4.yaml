@@ -1,0 +1,12 @@
+id: app_1.6.4
+name: Create Placeholder CONTRIBUTING.md
+status: PENDING
+type: MANUAL
+depends_on:
+- app_1.6.1
+- app_1.3.1
+manual_instructions:
+- "Add `docs/CONTRIBUTING.md` with:\n  # Contributing\n\n  Guidelines TBD\nCommit\
+  \ it."
+outputs:
+- '`docs/CONTRIBUTING.md` created and committed.'

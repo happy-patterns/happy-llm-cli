@@ -1,0 +1,22 @@
+id: app_2.1.1
+name: Generate AbstractProviderAdapter Code Snippet
+status: PENDING
+type: AI_ASSISTED
+depends_on:
+- app_1.2.2
+ai_details:
+  model: gpt-4.1-mini
+  prompt: "Goal: Generate ONLY the Python code snippet for an\nAbstract Base Class\
+    \ `AbstractProviderAdapter`.\nContext:\n  - Target file: `happy_llm_cli/providers/base.py`.\n\
+    \  - Class should inherit from `abc.ABC`.\n  - Requires one abstract method: `complete_chat`.\n\
+    \  - Method signature uses forward references:\n    `request: 'ChatRequest'`,\
+    \ `-> 'ChatResponse'`.\n  - Naming conventions: Class `AbstractProviderAdapter`,\
+    \ method\n    `complete_chat`.\nInstructions:\n  - Import `ABC` and `abstractmethod`\
+    \ from `abc`.\n  - Define the class `AbstractProviderAdapter(ABC)`.\n  - Define\
+    \ the abstract method\n    `complete_chat(self, request: 'ChatRequest') -> 'ChatResponse':`\n\
+    \    using `@abstractmethod`.\n  - Include a simple docstring for the method.\n\
+    \  - Use `pass` as the method body.\n  - DO NOT include data class definitions\
+    \ or any other code in this snippet.\nOutput Format: Python code snippet for the\
+    \ class definition only."
+outputs:
+- Python code snippet for `AbstractProviderAdapter` generated.

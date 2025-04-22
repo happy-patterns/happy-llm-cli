@@ -1,0 +1,14 @@
+id: app_1.6.2
+name: Generate Placeholder ARCHITECTURE.md
+status: PENDING
+type: AI_ASSISTED
+depends_on:
+- app_1.6.1
+ai_details:
+  model: gpt-4.1-nano
+  prompt: "Goal: Generate placeholder content for ARCHITECTURE.md.\nContext:\n  -\
+    \ Layers: CLI (Typer), Adapters (ABC/Providers),\n    Config (.env/dotenv), Utilities\n\
+    \  - Containerized environment\nInstructions:\n  - H1 `# Architecture`\n  - H2\
+    \ per layer + `## Development Environment`\nOutput Format: Markdown text."
+outputs:
+- Markdown for `docs/ARCHITECTURE.md` prepared.

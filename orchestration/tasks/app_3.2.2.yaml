@@ -1,0 +1,10 @@
+id: app_3.2.2
+name: Review Request Preparation Code Snippet
+status: PENDING
+type: MANUAL
+depends_on:
+- app_3.2.1
+manual_instructions:
+- Verify header/payload logic, correct attribute usage, no hardcoded values.
+outputs:
+- Request preparation snippet reviewed.

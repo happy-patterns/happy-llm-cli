@@ -1,0 +1,31 @@
+ai_details:
+  model: o4-mini
+  prompt: 'Refine and extend `orchestration/run.py`:
+
+    - Add support for tasks of type `AUTOMATED_SCRIPT`, executing shell commands or
+    scripts.
+
+    - Implement fallback prompts for `AI_ASSISTED` tasks, using a secondary template
+    on failures.
+
+    - Include cost estimation logging (e.g., token usage) in `run_log.jsonl`.
+
+    - Add a CLI option `--start-from <task_id>` to begin orchestration at a specific
+    task.
+
+    '
+depends_on:
+- orchestrate_7_error_handling
+id: orchestrate_8_refine
+issues:
+- detail: ''
+  timestamp: '2025-04-21T15:48:51.263574Z'
+  type: AI_RESPONSE_REJECTED
+- detail: ''
+  timestamp: '2025-04-21T18:13:23.188586Z'
+  type: AI_RESPONSE_REJECTED
+name: Refine orchestrator (fallback prompts, automated script handler)
+outputs:
+- Advanced features and refinements added to `orchestration/run.py`.
+status: DONE
+type: AI_ASSISTED

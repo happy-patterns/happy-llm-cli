@@ -1,0 +1,25 @@
+id: app_6.1.9
+name: Generate Unit Tests for OpenAI Provider
+status: PENDING
+type: AI_ASSISTED
+depends_on:
+- app_3.4.3
+- app_6.1.2
+ai_details:
+  model: o4-mini
+  prompt: "Goal: Generate ONLY the Python code snippet for Pytest unit tests for the\
+    \ `OpenAIProvider`.\nContext:\n  - Target file: `tests/providers/test_openai_provider.py`.\n\
+    \  - Class: `OpenAIProvider` from `happy_llm_cli.providers.openai_provider`.\n\
+    \  - Needs mocking for `requests.post`. Configure response `status_code` and `json()`.\
+    \ \n  - Exceptions: `AuthenticationError`, `RateLimitError`, `ProviderResponseError`,\
+    \ `requests.exceptions.RequestException`, `json.JSONDecodeError`.\n  - Test Cases\
+    \ for `complete_chat`:\n      1. Success (200).\n      2. Auth Error (401).\n\
+    \      3. Rate Limit Error (429).\n      4. Server Error (500).\n      5. Network\
+    \ Error.\n      6. JSON Decode Error.\n  - Test Cases for `__init__`:\n      1.\
+    \ Valid API Key.\n      2. Missing/Empty API Key (ValueError).\n      3. Default\
+    \ model when None.\nInstructions:\n  - Import necessary classes and exceptions.\n\
+    \  - Mock `requests.post` using `mocker.patch`.\n  - Write tests using `pytest.raises`\
+    \ for error scenarios and assertions for success.\nOutput Format: Python code\
+    \ snippet containing the test functions and necessary imports."
+outputs:
+- Python code snippet for `test_openai_provider.py` generated.

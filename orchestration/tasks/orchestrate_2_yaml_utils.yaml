@@ -1,0 +1,20 @@
+ai_details:
+  model: gpt-4.1-mini
+  prompt: 'Implement Python helper functions `load_yaml(path) -> dict` and `save_yaml(data,
+    path)` using `PyYAML` in `orchestration/run.py`. Ensure:
+
+    - Safe loading with `yaml.safe_load`.
+
+    - Writing with `yaml.safe_dump`.
+
+    - Proper error handling for missing files and parse errors.
+
+    '
+depends_on:
+- orchestrate_1.3_init_task_files
+id: orchestrate_2_yaml_utils
+name: Implement YAML load/save utilities
+outputs:
+- Functions `load_yaml` and `save_yaml` implemented in `orchestration/run.py`.
+status: DONE
+type: AI_ASSISTED

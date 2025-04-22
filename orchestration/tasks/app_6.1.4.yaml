@@ -1,0 +1,14 @@
+id: app_6.1.4
+name: Review Unit Tests for Config Util
+status: PENDING
+type: MANUAL
+depends_on:
+- app_6.1.3
+manual_instructions:
+- "Manually review the generated test code for `test_config.py`:\n  - Check imports,\
+  \ use of `mocker` or `@patch`.\n  - Verify mocks are configured correctly for each\
+  \ case (return value of `getenv`).\n  - Confirm assertions check return value (success)\
+  \ or raised exception (`ValueError` for failures).\n  - Ensure tests cover specified\
+  \ cases."
+outputs:
+- Code snippet for `test_config.py` reviewed and approved/corrected.

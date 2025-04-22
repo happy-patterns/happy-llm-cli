@@ -1,0 +1,11 @@
+id: app_3.2.3
+name: Integrate Request Preparation into complete_chat
+status: PENDING
+type: MANUAL
+depends_on:
+- app_3.1.3
+- app_3.2.2
+manual_instructions:
+- Insert reviewed request prep code into `complete_chat` replacing placeholder.
+outputs:
+- Request prep logic integrated.

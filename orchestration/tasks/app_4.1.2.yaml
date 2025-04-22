@@ -1,0 +1,12 @@
+id: app_4.1.2
+name: Review load_api_key Code Snippet
+status: PENDING
+type: MANUAL
+depends_on:
+- app_4.1.1
+manual_instructions:
+- "Manually review the generated snippet:\n  - Verify imports (`os`, `dotenv`).\n\
+  \  - Check signature, docstring, `load_dotenv()` call.\n  - Validate env var name\
+  \ construction and `os.getenv()` logic.\n  - Ensure simplicity without extra logic."
+outputs:
+- Code snippet for `load_api_key` reviewed and approved/corrected.

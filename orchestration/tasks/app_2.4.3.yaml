@@ -1,0 +1,12 @@
+id: app_2.4.3
+name: '[Optional] Write Provider Exceptions File'
+status: PENDING
+type: MANUAL
+depends_on:
+- app_2.4.2
+- app_1.2.2
+manual_instructions:
+- "If proceeding:\n  - Create `happy_llm_cli/providers/exceptions.py`.\n  - Write\
+  \ the reviewed exception classes code into the file."
+outputs:
+- '[Optional] `happy_llm_cli/providers/exceptions.py` created with exception classes.'

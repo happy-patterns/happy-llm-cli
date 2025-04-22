@@ -1,0 +1,15 @@
+ai_details:
+  model: o4-mini
+  prompt: "In `orchestration/run.py`, implement handling for tasks of type `MANUAL`:\n\
+    - Read `manual_instructions` from the task detail YAML.\n- Display instructions\
+    \ to the user.\n- Prompt the user to enter a choice:\n    * `y` to mark DONE,\n\
+    \    * `e` to mark ERROR,\n    * `s` to SKIP.\n- Update the task's `status` in\
+    \ both `runbook.yaml` and the detail file accordingly.\n"
+depends_on:
+- orchestrate_3_core_loop
+id: orchestrate_4_manual_handler
+name: Implement manual task handler
+outputs:
+- Manual task handler implemented in `orchestration/run.py`.
+status: DONE
+type: AI_ASSISTED

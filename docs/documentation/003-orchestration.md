@@ -7,6 +7,22 @@ tags: [orchestration]
 
 # Orchestration System
 
+### Invocation
+
+You can invoke the orchestrator in multiple ways:
+
+- From the project root directory:
+  ```bash
+  python3 orchestration/run.py
+  ```
+- As a module (from any directory within the repo):
+  ```bash
+  python3 -m orchestration.run
+  ```
+- After installing the project in editable mode (`pip install -e .`):
+  ```bash
+  happy-llm-orchestrate
+  ```
 The orchestration tooling is located under `orchestration/`:
 
 - **`runbook.yaml`**: Master task flow with task entries:

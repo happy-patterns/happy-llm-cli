@@ -1,0 +1,13 @@
+id: app_2.3.4
+name: '[Optional] Commit Provider Factory'
+status: PENDING
+type: MANUAL
+depends_on:
+- app_2.3.3
+- app_1.3.6
+manual_instructions:
+- "If proceeding:\n  - Stage `happy_llm_cli/providers/factory.py`.\n  - Run:\n   \
+  \ git add happy_llm_cli/providers/factory.py\n    git commit -m \"feat(enhancement):\
+  \ Add provider factory\""
+outputs:
+- '[Optional] Provider factory committed to Git.'

@@ -1,0 +1,19 @@
+depends_on:
+- orchestrate_8_refine
+id: app_1.1.1
+manual_instructions:
+- 'Create the `Containerfile` text content exactly as specified
+
+  in the plan (Fedora base, non-root user, Python setup,
+
+  initial dependencies if any, WORKDIR, permissions).
+
+  Create the `.containerignore` file content exactly as specified
+
+  in the plan.'
+name: Define Container Environment Files
+outputs:
+- Text content for `Containerfile` prepared.
+- Text content for `.containerignore` prepared.
+status: DONE
+type: MANUAL

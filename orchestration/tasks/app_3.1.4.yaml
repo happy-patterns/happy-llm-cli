@@ -1,0 +1,10 @@
+id: app_3.1.4
+name: Ensure `requests` Dependency
+status: PENDING
+type: MANUAL
+depends_on:
+- app_3.1.3
+manual_instructions:
+- Verify/add `requests` in `requirements.txt` and rebuild/install in container.
+outputs:
+- '`requests` confirmed in dependencies.'

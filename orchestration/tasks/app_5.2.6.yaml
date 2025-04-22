@@ -1,0 +1,13 @@
+id: app_5.2.6
+name: Integrate Config Loading into chat function
+status: PENDING
+type: MANUAL
+depends_on:
+- app_5.2.3
+- app_5.2.5
+manual_instructions:
+- 'Open `happy_llm_cli/cli.py` and insert the reviewed config loading
+
+  snippet at the beginning of `chat`.'
+outputs:
+- Config loading logic integrated into `chat` function.

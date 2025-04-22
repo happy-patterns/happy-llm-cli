@@ -14,3 +14,4 @@ This index provides links to core documentation for the Happy LLM CLI project:
 - [DOC-003: Orchestration System Overview](003-orchestration.md)
 - [DOC-004: Central Reference Systems](004-reference.md)
 - [DOC-005: OpenAI Responses API Function Calling Guide](005-function-calling.md)
+- [DOC-006: Architecture](../ARCHITECTURE.md)

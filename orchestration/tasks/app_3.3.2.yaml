@@ -1,0 +1,10 @@
+id: app_3.3.2
+name: Review API Call Code Snippet
+status: PENDING
+type: MANUAL
+depends_on:
+- app_3.3.1
+manual_instructions:
+- Verify `requests.post` usage, exception handling, no status parsing.
+outputs:
+- API call snippet reviewed.

@@ -1,0 +1,24 @@
+ai_details:
+  model: o4-mini
+  prompt: 'Extend `orchestration/run.py` with the main loop that:
+
+    1. Loads `runbook.yaml` using `load_yaml`.
+
+    2. Identifies tasks with `status == ''READY''` and no unmet dependencies.
+
+    3. Marks the first such task as `RUNNING` in both `runbook.yaml` and its detail
+    file.
+
+    4. Saves the updated YAML files.
+
+    5. (Later) Executes the task handler based on `type`.
+
+    '
+depends_on:
+- orchestrate_2_yaml_utils
+id: orchestrate_3_core_loop
+name: Implement core orchestrator loop
+outputs:
+- Core orchestrator loop logic added to `orchestration/run.py`.
+status: DONE
+type: AI_ASSISTED

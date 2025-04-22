@@ -1,0 +1,14 @@
+id: app_3.2.1
+name: Generate Request Preparation Code Snippet
+status: PENDING
+type: AI_ASSISTED
+depends_on:
+- app_3.1.3
+ai_details:
+  model: o4-mini
+  prompt: "Goal: Generate ONLY the Python code snippet for request header and payload\
+    \ preparation.\nContext: Inside `complete_chat`, use `self._api_key`, `self.model`,\
+    \ and `request.messages`.\nInstructions:\n  - Build `headers` and `data` dicts\
+    \ as required by OpenAI API.\nOutput: Code snippet for headers and payload only."
+outputs:
+- Request preparation snippet generated.

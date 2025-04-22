@@ -1,0 +1,10 @@
+depends_on:
+- orchestrate_8_refine
+id: app_1.3.1
+manual_instructions:
+- Run `git init` in the project root directory.
+name: Initialize Git Repository
+outputs:
+- Initialized empty Git repo in `.git/`.
+status: RUNNING
+type: MANUAL

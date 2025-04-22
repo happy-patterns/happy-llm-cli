@@ -22,10 +22,9 @@ USER ${USERNAME}
 WORKDIR /home/${USERNAME}/app
 
 # Python environment setup
-COPY --chown=${USERNAME}:${USERNAME} requirements.txt .
 RUN python3 -m venv .venv
 ENV PATH="/home/${USERNAME}/app/.venv/bin:$PATH"
-RUN pip install --no-cache-dir -r requirements.txt
 
-# Copy application code
+# Copy project code and install dependencies via pyproject.toml
 COPY --chown=${USERNAME}:${USERNAME} . .
+RUN pip install --no-cache-dir -e .

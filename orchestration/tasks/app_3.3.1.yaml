@@ -1,0 +1,16 @@
+id: app_3.3.1
+name: Generate API Call Code Snippet
+status: PENDING
+type: AI_ASSISTED
+depends_on:
+- app_3.2.3
+ai_details:
+  model: o4-mini
+  prompt: 'Goal: Generate snippet for `requests.post` and `except RequestException`
+    only.
+
+    Context: After headers/data prep, use `OPENAI_API_URL`, `headers`, `data`.
+
+    Instructions: Provide try/except as per spec.'
+outputs:
+- API call snippet generated.

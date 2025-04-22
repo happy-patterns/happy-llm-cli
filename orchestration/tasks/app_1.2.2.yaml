@@ -1,0 +1,11 @@
+depends_on:
+- app_1.2.1
+id: app_1.2.2
+manual_instructions:
+- "In your container (or mapped volume), run:\n  touch happy_llm_cli/__init__.py\n\
+  \  touch happy_llm_cli/providers/__init__.py\n  touch happy_llm_cli/utils/__init__.py"
+name: Create Package Initializer Files
+outputs:
+- '`__init__.py` added in `happy_llm_cli/`, `providers/`, `utils/`.'
+status: DONE
+type: MANUAL

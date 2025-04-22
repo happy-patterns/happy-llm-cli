@@ -1,0 +1,12 @@
+id: app_6.1.7
+name: Review Unit Tests for Rate Limit Util
+status: PENDING
+type: MANUAL
+depends_on:
+- app_6.1.6
+manual_instructions:
+- "Manually review the generated test code for `test_rate_limit.py`:\n  - Check imports,\
+  \ use of `mocker`.\n  - Verify mock setups for `func` (side effects and return values).\n\
+  \  - Confirm assertions check return values, raised exceptions, and mock call counts."
+outputs:
+- Code snippet for `test_rate_limit.py` reviewed and approved/corrected.

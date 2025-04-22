@@ -1,0 +1,18 @@
+id: app_6.1.2
+name: Ensure Test Dependencies
+status: PENDING
+type: MANUAL
+depends_on:
+- app_6.1.1
+manual_instructions:
+- '- Verify testing framework (`pytest`) and mocking libraries (`pytest-mock`, `requests-mock`
+  - optional) are listed in `requirements-dev.txt` or a `[project.optional-dependencies]`
+  group in `pyproject.toml`.
+
+  - If not, add them.
+
+  - Ensure these dependencies are installed in the development environment (`pip install
+  -r requirements-dev.txt` or `pip install .[dev]`).'
+outputs:
+- Test dependencies (`pytest`, mocks) confirmed/added.
+- Development environment updated with test dependencies.

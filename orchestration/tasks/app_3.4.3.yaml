@@ -1,0 +1,11 @@
+id: app_3.4.3
+name: Integrate Response Handling into complete_chat
+status: PENDING
+type: MANUAL
+depends_on:
+- app_3.3.3
+- app_3.4.2
+manual_instructions:
+- Insert reviewed response handling snippet into `complete_chat`.
+outputs:
+- Response handling logic integrated.

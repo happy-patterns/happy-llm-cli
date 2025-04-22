@@ -1,0 +1,13 @@
+id: app_2.4.4
+name: '[Optional] Commit Provider Exceptions'
+status: PENDING
+type: MANUAL
+depends_on:
+- app_2.4.3
+- app_1.3.6
+manual_instructions:
+- "If proceeding:\n  - Stage `happy_llm_cli/providers/exceptions.py`.\n  - Run:\n\
+  \    git add happy_llm_cli/providers/exceptions.py\n    git commit -m \"feat(enhancement):\
+  \ Add custom provider exceptions\""
+outputs:
+- '[Optional] Provider exceptions committed to Git.'

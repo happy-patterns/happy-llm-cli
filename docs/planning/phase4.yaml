@@ -1,0 +1,510 @@
+id: 5
+name: "Phase 4: Implement CLI Interface (Granular)"
+description: >
+  Build the command-line interface using Typer, allowing users to
+  interact with the configured LLM provider. Granular breakdown.
+model: null
+prompt_template: null
+
+subtasks:
+  - id: 5.1.1
+    name: "Generate Typer App Skeleton Code Snippet"
+    details: |
+      Use AI to generate the basic Typer structure: imports (`typer`,
+      `typing`), app instance, `chat` command function signature with
+      `typer.Argument`/`typer.Option` and placeholder body, and
+      `if __name__ == "__main__":` block.
+    ai_assisted: true
+    model: "gpt-4.1-mini"
+    prompt_template: |
+      Goal: Generate ONLY the Python code snippet for the basic
+      Typer CLI structure.
+      Context:
+        - Target file: `happy_llm_cli/cli.py`.
+        - Need `typer.Typer()` instance named `app`.
+        - Need `chat` command function decorated with `@app.command()`.
+        - Chat signature with `prompt: str = typer.Argument(...)`,
+          `provider: Optional[str] = typer.Option("openai", "--provider", "-p", help=...)`,
+          `model: Optional[str] = typer.Option(None, "--model", "-m", help=...)`.
+        - Include standard `if __name__ == "__main__":` block calling `app()`.
+      Instructions:
+        - Import `typer` and `Optional` from `typing`.
+        - Define `app = typer.Typer()`.
+        - Define `chat` function with placeholder body (`pass`).
+        - Add `if __name__ == "__main__": app()`.
+      Output Format: Python code snippet for the Typer structure.
+    dependencies:
+      - 1.2.2
+    outputs:
+      - "Python code snippet for Typer skeleton generated."
+
+  - id: 5.1.2
+    name: "Review Typer App Skeleton Code Snippet"
+    details: |
+      Manually review the generated snippet:
+        - Check imports (`typer`, `typing`).
+        - Verify `app` instance creation.
+        - Check `chat` function signature and decorator.
+        - Ensure `if __name__ == "__main__":` block is correct.
+        - Confirm placeholder body (`pass`).
+    ai_assisted: false
+    dependencies:
+      - 5.1.1
+    outputs:
+      - "Code snippet for Typer skeleton reviewed and approved/corrected."
+
+  - id: 5.1.3
+    name: "Ensure `typer` Dependency"
+    details: |
+      Verify that `typer` (or `typer[all]`) is listed in the `[project.dependencies]` section of `pyproject.toml`.
+      If missing, add it, then reinstall dependencies (e.g., `pip install -e .` or rebuild the container).
+    ai_assisted: false
+    dependencies:
+      - 5.1.2
+    outputs:
+      - "`typer` confirmed/added to project dependencies."
+      - "Development environment updated with `typer`."
+
+  - id: 5.1.4
+    name: "Write cli.py File"
+    details: |
+      Create `happy_llm_cli/cli.py` and write the reviewed Typer skeleton
+      code into the file.
+    ai_assisted: false
+    dependencies:
+      - 5.1.2
+      - 5.1.3
+      - 1.2.2
+    outputs:
+      - "`happy_llm_cli/cli.py` created with Typer skeleton."
+
+  - id: 5.1.5
+    name: "Commit Typer Skeleton"
+    details: |
+      Stage `happy_llm_cli/cli.py` and any changes to `pyproject.toml`:
+        git add happy_llm_cli/cli.py pyproject.toml
+        git commit -m "feat: Add basic Typer CLI structure"
+    ai_assisted: false
+    dependencies:
+      - 5.1.4
+      - 1.3.6
+    outputs:
+      - "Typer skeleton (`cli.py`) committed to Git."
+
+  - id: 5.2.1
+    name: "Generate Imports for Chat Command Logic"
+    details: |
+      Generate the necessary import statements for the `chat` command
+      logic, including utilities, providers, data classes, exceptions,
+      and `typer` itself.
+    ai_assisted: true
+    model: "gpt-4.1-mini"
+    prompt_template: |
+      Goal: Generate ONLY the Python import statements for the `chat`
+      command logic in `cli.py`.
+      Context:
+        - `chat` needs: `typer`, `load_api_key`, `ChatMessage`,
+          `ChatRequest`, `ChatResponse`, `OpenAIProvider`/`get_provider`,
+          exceptions (`ProviderError`, etc.), `format_response`.
+      Instructions:
+        - List imports using relative paths (`..`).
+        - Group imports logically.
+      Output Format: Python code snippet of import statements.
+    dependencies:
+      - 4.1.4
+      - 3.4.3
+      - 2.1.3
+      - 2.2.3
+    outputs:
+      - "Python import statements for `chat` logic generated."
+
+  - id: 5.2.2
+    name: "Review Imports for Chat Command Logic"
+    details: |
+      Manually review the generated imports:
+        - Verify all required components are imported.
+        - Check import paths and grouping.
+        - Ensure no unnecessary imports.
+    ai_assisted: false
+    dependencies:
+      - 5.2.1
+    outputs:
+      - "Import statements reviewed and approved/corrected."
+
+  - id: 5.2.3
+    name: "Integrate Imports into cli.py"
+    details: |
+      Open `happy_llm_cli/cli.py` and add or merge the reviewed
+      import statements at the top.
+    ai_assisted: false
+    dependencies:
+      - 5.1.4
+      - 5.2.2
+    outputs:
+      - "Imports integrated into `cli.py`."
+
+  - id: 5.2.4
+    name: "Generate Config Loading Code Snippet"
+    details: |
+      Use AI to generate the code snippet for loading the API key
+      inside the `chat` function:
+        try:
+          api_key = load_api_key(provider)
+        except ValueError as e:
+          typer.secho(f"Configuration Error: {e}", fg=typer.colors.RED)
+          raise typer.Exit(code=1)
+    ai_assisted: true
+    model: "gpt-4.1-mini"
+    prompt_template: |
+      Goal: Generate ONLY the Python code snippet for loading the API key
+      inside `chat`.
+      Context:
+        - Use `load_api_key(provider)`.
+        - Handle `ValueError` with `typer.secho` and `typer.Exit`.
+      Instructions:
+        - Write the try/except block.
+      Output Format: Python code snippet for the try/except.
+    dependencies:
+      - 4.1.4
+    outputs:
+      - "Python code snippet for config loading generated."
+
+  - id: 5.2.5
+    name: "Review Config Loading Code Snippet"
+    details: |
+      Manually review the snippet:
+        - Verify try/except structure and error handling.
+        - Ensure `api_key` assignment on success.
+    ai_assisted: false
+    dependencies:
+      - 5.2.4
+    outputs:
+      - "Code snippet for config loading reviewed and approved/corrected."
+
+  - id: 5.2.6
+    name: "Integrate Config Loading into chat function"
+    details: |
+      Open `happy_llm_cli/cli.py` and insert the reviewed config loading
+      snippet at the beginning of `chat`.
+    ai_assisted: false
+    dependencies:
+      - 5.2.3
+      - 5.2.5
+    outputs:
+      - "Config loading logic integrated into `chat` function."
+
+  - id: 5.2.7
+    name: "Generate Provider Instantiation Code Snippet"
+    details: |
+      Use AI to generate the code snippet for instantiating the LLM
+      provider inside `chat`, choosing factory or direct approach,
+      with error handling:
+        try:
+          provider_instance = ...
+        except Exception as e:
+          typer.secho(f"Provider Error: {e}", fg=typer.colors.RED)
+          raise typer.Exit(code=1)
+    ai_assisted: true
+    model: "o4-mini"
+    prompt_template: |
+      Goal: Generate ONLY the Python code snippet for instantiating the provider in `chat`.
+      Context:
+        - Variables: `provider`, `api_key`, `model`.
+        - Factory: `get_provider(provider, config)` (catch NotImplementedError, ValueError, ProviderError).
+        - Direct: `OpenAIProvider(api_key, model)` (catch ValueError).
+      Instructions:
+        - Write the try/except block with appropriate exception catches.
+      Output Format: Python code snippet for the try/except.
+    dependencies:
+      - 5.2.6
+    outputs:
+      - "Python code snippet for provider instantiation generated."
+
+  - id: 5.2.8
+    name: "Review Provider Instantiation Code Snippet"
+    details: |
+      Manually review the snippet:
+        - Verify chosen approach and caught exceptions.
+        - Check error handling using typer.
+        - Confirm `provider_instance` on success.
+    ai_assisted: false
+    dependencies:
+      - 5.2.7
+    outputs:
+      - "Code snippet for provider instantiation reviewed and approved/corrected."
+
+  - id: 5.2.9
+    name: "Integrate Provider Instantiation into chat function"
+    details: |
+      Open `happy_llm_cli/cli.py` and insert the reviewed instantiation
+      snippet after config loading.
+    ai_assisted: false
+    dependencies:
+      - 5.2.6
+      - 5.2.8
+    outputs:
+      - "Provider instantiation logic integrated into `chat` function."
+
+  - id: 5.2.10
+    name: "Generate Request Preparation Code Snippet"
+    details: |
+      Use AI to generate code snippet for preparing chat request:
+        messages = [ChatMessage(role="user", content=prompt)]
+        request_data = ChatRequest(messages=messages)
+    ai_assisted: true
+    model: "gpt-4.1-mini"
+    prompt_template: |
+      Goal: Generate ONLY the Python code snippet for preparing the chat request.
+      Context:
+        - `prompt` variable exists.
+        - Use `ChatMessage` and `ChatRequest`.
+      Instructions:
+        - Write the two lines for `messages` and `request_data`.
+      Output Format: Python code snippet with two lines.
+    dependencies:
+      - 2.1.3
+      - 2.2.3
+    outputs:
+      - "Python code snippet for request preparation generated."
+
+  - id: 5.2.11
+    name: "Review Request Preparation Code Snippet"
+    details: |
+      Manually review the snippet:
+        - Verify `ChatMessage(role="user", content=prompt)`. 
+        - Verify `ChatRequest(messages=messages)`. 
+    ai_assisted: false
+    dependencies:
+      - 5.2.10
+    outputs:
+      - "Code snippet for request preparation reviewed and approved/corrected."
+
+  - id: 5.2.12
+    name: "Integrate Request Preparation into chat function"
+    details: |
+      Open `happy_llm_cli/cli.py` and insert the reviewed snippet
+      after provider instantiation.
+    ai_assisted: false
+    dependencies:
+      - 5.2.9
+      - 5.2.11
+    outputs:
+      - "Request preparation logic integrated into `chat` function."
+
+  - id: 5.2.13
+    name: "Generate Provider Call & Response Handling Snippet"
+    details: |
+      Use AI to generate code snippet for calling `complete_chat`,
+      handling `response.error`, printing output, and catching exceptions:
+        try:
+          response = provider_instance.complete_chat(request_data)
+          if response.error:
+            ...
+          else:
+            ...
+        except Exception as e:
+          ...
+    ai_assisted: true
+    model: "o4-mini"
+    prompt_template: |
+      Goal: Generate ONLY the Python code snippet for provider call and
+      response handling inside `chat`.
+      Context:
+        - `provider_instance` and `request_data` exist.
+      Instructions:
+        - Write the try/except block with response error and success paths.
+      Output Format: Python code snippet for the try/except.
+    dependencies:
+      - 5.2.12
+      - 3.4.3
+    outputs:
+      - "Python code snippet for provider call/response handling generated."
+
+  - id: 5.2.14
+    name: "Review Provider Call & Response Handling Snippet"
+    details: |
+      Manually review the snippet:
+        - Verify try/except structure.
+        - Check `complete_chat` call and error/success handling.
+    ai_assisted: false
+    dependencies:
+      - 5.2.13
+    outputs:
+      - "Code snippet for provider call/response handling reviewed and approved/corrected."
+
+  - id: 5.2.15
+    name: "Integrate Provider Call & Response Handling into chat function"
+    details: |
+      Open `happy_llm_cli/cli.py` and insert the reviewed snippet
+      after request preparation.
+    ai_assisted: false
+    dependencies:
+      - 5.2.12
+      - 5.2.14
+    outputs:
+      - "Provider call/response handling logic integrated into `chat` function."
+
+  - id: 5.2.16
+    name: "Commit Chat Command Implementation"
+    details: |
+      Stage and commit `cli.py`:
+        git add happy_llm_cli/cli.py
+        git commit -m "feat: Implement chat command logic"
+    ai_assisted: false
+    dependencies:
+      - 5.2.3
+      - 5.2.6
+      - 5.2.9
+      - 5.2.12
+      - 5.2.15
+      - 5.1.5
+    outputs:
+      - "Chat command logic committed to Git."
+
+  - id: 5.3.1
+    name: "[Optional] Ensure `rich` Dependency"
+    details: |
+      If proceeding:
+        - Verify that `rich` is listed in the `[project.dependencies]` section of `pyproject.toml`; add if missing.
+        - Reinstall dependencies (e.g., `pip install -e .`) or rebuild the container.
+    ai_assisted: false
+    dependencies:
+      - 5.2.16
+    outputs:
+      - "[Optional] `rich` confirmed/added to project dependencies."
+      - "[Optional] Development environment updated with `rich`."
+
+  - id: 5.3.2
+    name: "[Optional] Generate Rich Status Code Snippet"
+    details: |
+      If proceeding: Use AI to generate the `with Status(...)` snippet wrapping
+      `provider_instance.complete_chat(request_data)`.
+    ai_assisted: true
+    model: "gpt-4.1-mini"
+    prompt_template: |
+      Goal: Generate ONLY the Python code snippet for wrapping a line with `rich.status.Status`.
+      Context:
+        - Wrap the provider call line inside a `with Status(...)` block.
+      Instructions:
+        - Import `Status` from `rich.status`.
+        - Provide the `with Status("Thinking...", spinner="dots")` block.
+      Output Format: Python code snippet for the import and the `with` block.
+    dependencies:
+      - 5.2.15
+    outputs:
+      - "[Optional] Python code snippet for `rich.status` generated."
+
+  - id: 5.3.3
+    name: "[Optional] Review Rich Status Code Snippet"
+    details: |
+      If proceeding: Manually review the snippet:
+        - Check import and `with Status` syntax.
+        - Ensure correct indentation.
+    ai_assisted: false
+    dependencies:
+      - 5.3.2
+    outputs:
+      - "[Optional] Code snippet for `rich.status` reviewed and approved/corrected."
+
+  - id: 5.3.4
+    name: "[Optional] Integrate Rich Status into chat function"
+    details: |
+      If proceeding:
+        - Add `from rich.status import Status` at the top.
+        - Wrap the provider call line in the `with Status(...)` block.
+    ai_assisted: false
+    dependencies:
+      - 5.3.1
+      - 5.3.3
+      - 5.2.15
+    outputs:
+      - "[Optional] `rich.status` integrated into `chat` function."
+
+  - id: 5.3.5
+    name: "[Optional] Commit Rich Progress Enhancement"
+    details: |
+      If proceeding:
+        git add happy_llm_cli/cli.py requirements.txt
+        git commit -m "feat(enhancement): Add rich status indicator to chat command"
+    ai_assisted: false
+    dependencies:
+      - 5.3.4
+      - 5.2.16
+    outputs:
+      - "[Optional] Rich progress enhancement committed to Git."
+
+  - id: 5.4.1
+    name: "Generate Console Script TOML Snippet"
+    details: |
+      Use AI to generate the TOML snippet for defining a console script
+      entry point in `pyproject.toml` under `[project.scripts]`, mapping
+      `happy_llm` to `happy_llm_cli.cli:app`.
+    ai_assisted: true
+    model: "gpt-3.5-turbo"
+    prompt_template: |
+      Goal: Generate only the TOML snippet for `[project.scripts]`.
+      Context:
+        - Script name: `happy_llm`
+        - Entry: `happy_llm_cli.cli:app`
+      Instructions:
+        - Provide a `[project.scripts]` table with the mapping.
+      Output Format: TOML snippet.
+    dependencies:
+      - 5.2.16
+    outputs:
+      - "TOML snippet for console script generated."
+
+  - id: 5.4.2
+    name: "Review Console Script TOML Snippet"
+    details: |
+      Manually review the TOML snippet:
+        - Check `[project.scripts]` table and mapping syntax.
+    ai_assisted: false
+    dependencies:
+      - 5.4.1
+    outputs:
+      - "TOML snippet reviewed and approved/corrected."
+
+  - id: 5.4.3
+    name: "Update pyproject.toml"
+    details: |
+      Ensure `pyproject.toml` exists and add/update the
+      `[project.scripts]` section with the reviewed snippet.
+    ai_assisted: false
+    dependencies:
+      - 5.4.2
+    outputs:
+      - "`pyproject.toml` created/updated with console script entry point."
+
+  - id: 5.4.4
+    name: "Commit pyproject.toml Changes"
+    details: |
+      Stage `pyproject.toml` and commit:
+        git add pyproject.toml
+        git commit -m "build: Define console script entry point"
+    ai_assisted: false
+    dependencies:
+      - 5.4.3
+      - 1.3.6
+    outputs:
+      - "`pyproject.toml` changes committed to Git."
+
+fallbacks:
+  - task_id: 5.x.1
+    strategy: "Re-prompt or manually write the required code/config snippet."
+  - task_id: 5.x.2
+    strategy: "Correct the generated snippet manually before writing."
+  - task_id: 5.x.3
+    strategy: "Review integration points and debug manually."
+  - task_id: 5.1.3
+    strategy: "Manually update dependencies and rebuild environment."
+  - task_id: 5.4.3
+    strategy: "Manually edit `pyproject.toml` ensuring correct TOML syntax."
+
+outputs:
+  - "A runnable CLI application implemented in `happy_llm_cli/cli.py`, built incrementally and committed."
+  - "The `chat` command integrates configuration, provider instantiation, request preparation, provider interaction, and response handling."
+  - "(Optional) Rich progress indicator integrated and committed."
+  - "`typer` dependency managed."
+  - "Console script entry point defined in `pyproject.toml` and committed."
+  - "The core MVP functionality is implemented and version controlled."

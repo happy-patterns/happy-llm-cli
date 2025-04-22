@@ -1,0 +1,929 @@
+tasks:
+- depends_on: []
+  id: orchestrate_1.1_setup_dirs
+  name: Setup directory structure
+  status: SKIPPED
+  task_detail_file: tasks/orchestrate_1.1_setup_dirs.yaml
+  type: MANUAL
+- depends_on:
+  - orchestrate_1.1_setup_dirs
+  id: orchestrate_1.2_init_runbook
+  name: Initialize runbook.yaml
+  status: SKIPPED
+  task_detail_file: tasks/orchestrate_1.2_init_runbook.yaml
+  type: MANUAL
+- depends_on:
+  - orchestrate_1.2_init_runbook
+  id: orchestrate_1.3_init_task_files
+  name: Create empty task detail YAML files
+  status: SKIPPED
+  task_detail_file: tasks/orchestrate_1.3_init_task_files.yaml
+  type: MANUAL
+- depends_on:
+  - orchestrate_1.3_init_task_files
+  id: orchestrate_2_yaml_utils
+  name: Implement YAML load/save utilities
+  status: SKIPPED
+  task_detail_file: tasks/orchestrate_2_yaml_utils.yaml
+  type: AI_ASSISTED
+- depends_on:
+  - orchestrate_2_yaml_utils
+  id: orchestrate_3_core_loop
+  name: Implement core orchestrator loop
+  status: SKIPPED
+  task_detail_file: tasks/orchestrate_3_core_loop.yaml
+  type: AI_ASSISTED
+- depends_on:
+  - orchestrate_3_core_loop
+  id: orchestrate_4_manual_handler
+  name: Implement manual task handler
+  status: SKIPPED
+  task_detail_file: tasks/orchestrate_4_manual_handler.yaml
+  type: AI_ASSISTED
+- depends_on:
+  - orchestrate_4_manual_handler
+  id: orchestrate_5_logging
+  name: Add basic logging
+  status: SKIPPED
+  task_detail_file: tasks/orchestrate_5_logging.yaml
+  type: AI_ASSISTED
+- depends_on:
+  - orchestrate_5_logging
+  id: orchestrate_6_ai_handler
+  name: Implement AI task handler
+  status: SKIPPED
+  task_detail_file: tasks/orchestrate_6_ai_handler.yaml
+  type: AI_ASSISTED
+- depends_on:
+  - orchestrate_6_ai_handler
+  id: orchestrate_7_error_handling
+  name: Implement error handling and issues tracking
+  status: SKIPPED
+  task_detail_file: tasks/orchestrate_7_error_handling.yaml
+  type: AI_ASSISTED
+- depends_on:
+  - orchestrate_7_error_handling
+  id: orchestrate_8_refine
+  name: Refine orchestrator (fallback prompts, automated script handler)
+  status: DONE
+  task_detail_file: tasks/orchestrate_8_refine.yaml
+  type: AI_ASSISTED
+- depends_on:
+  - orchestrate_8_refine
+  id: app_1.1.1
+  name: Define Container Environment Files
+  status: DONE
+  task_detail_file: tasks/app_1.1.1.yaml
+  type: MANUAL
+- depends_on:
+  - app_1.1.1
+  id: app_1.1.2
+  name: Write Container Environment Files
+  status: DONE
+  task_detail_file: tasks/app_1.1.2.yaml
+  type: MANUAL
+- depends_on:
+  - app_1.1.2
+  id: app_1.1.3
+  name: Build Development Container Image
+  status: DONE
+  task_detail_file: tasks/app_1.1.3.yaml
+  type: MANUAL
+- depends_on:
+  - app_1.1.2
+  id: app_1.1.4
+  name: Document/Configure Container Runtime
+  status: DONE
+  task_detail_file: tasks/app_1.1.4.yaml
+  type: MANUAL
+- depends_on:
+  - app_1.1.4
+  id: app_1.2.1
+  name: Create Project Source Directories
+  status: DONE
+  task_detail_file: tasks/app_1.2.1.yaml
+  type: MANUAL
+- depends_on:
+  - app_1.2.1
+  id: app_1.2.2
+  name: Create Package Initializer Files
+  status: DONE
+  task_detail_file: tasks/app_1.2.2.yaml
+  type: MANUAL
+- depends_on:
+  - orchestrate_8_refine
+  id: app_1.3.1
+  name: Initialize Git Repository
+  status: RUNNING
+  task_detail_file: tasks/app_1.3.1.yaml
+  type: MANUAL
+- depends_on:
+  - app_1.3.1
+  id: app_1.3.2
+  name: Generate .gitignore Content
+  status: PENDING
+  task_detail_file: tasks/app_1.3.2.yaml
+  type: AI_ASSISTED
+- depends_on:
+  - app_1.3.2
+  id: app_1.3.3
+  name: Write .gitignore File
+  status: PENDING
+  task_detail_file: tasks/app_1.3.3.yaml
+  type: MANUAL
+- depends_on:
+  - app_1.3.1
+  id: app_1.3.4
+  name: Generate Initial README Content
+  status: PENDING
+  task_detail_file: tasks/app_1.3.4.yaml
+  type: AI_ASSISTED
+- depends_on:
+  - app_1.3.4
+  id: app_1.3.5
+  name: Write Initial README.md File
+  status: PENDING
+  task_detail_file: tasks/app_1.3.5.yaml
+  type: MANUAL
+- depends_on:
+  - app_1.3.1
+  - app_1.1.2
+  - app_1.3.3
+  - app_1.3.5
+  - app_1.2.2
+  id: app_1.3.6
+  name: Make Initial Git Commit
+  status: PENDING
+  task_detail_file: tasks/app_1.3.6.yaml
+  type: MANUAL
+- depends_on:
+  - app_1.1.3
+  - app_1.1.4
+  id: app_1.4.1
+  name: Verify Virtual Environment Activation
+  status: READY
+  task_detail_file: tasks/app_1.4.1.yaml
+  type: MANUAL
+- depends_on:
+  - app_1.4.1
+  id: app_1.4.2
+  name: Verify Initial Dependencies
+  status: PENDING
+  task_detail_file: tasks/app_1.4.2.yaml
+  type: MANUAL
+- depends_on:
+  - app_1.3.3
+  id: app_1.5.1
+  name: Create .env File (Host)
+  status: PENDING
+  task_detail_file: tasks/app_1.5.1.yaml
+  type: MANUAL
+- depends_on:
+  - app_1.3.1
+  id: app_1.5.2
+  name: Create .env.example File
+  status: PENDING
+  task_detail_file: tasks/app_1.5.2.yaml
+  type: MANUAL
+- depends_on:
+  - orchestrate_8_refine
+  id: app_1.6.1
+  name: Create Documentation Directory
+  status: READY
+  task_detail_file: tasks/app_1.6.1.yaml
+  type: MANUAL
+- depends_on:
+  - app_1.6.1
+  id: app_1.6.2
+  name: Generate Placeholder ARCHITECTURE.md
+  status: PENDING
+  task_detail_file: tasks/app_1.6.2.yaml
+  type: AI_ASSISTED
+- depends_on:
+  - app_1.6.2
+  - app_1.3.1
+  id: app_1.6.3
+  name: Write Placeholder ARCHITECTURE.md
+  status: PENDING
+  task_detail_file: tasks/app_1.6.3.yaml
+  type: MANUAL
+- depends_on:
+  - app_1.6.1
+  - app_1.3.1
+  id: app_1.6.4
+  name: Create Placeholder CONTRIBUTING.md
+  status: PENDING
+  task_detail_file: tasks/app_1.6.4.yaml
+  type: MANUAL
+- depends_on:
+  - app_1.6.1
+  - app_1.3.1
+  id: app_1.6.5
+  name: Create Placeholder CHANGELOG.md
+  status: PENDING
+  task_detail_file: tasks/app_1.6.5.yaml
+  type: MANUAL
+- depends_on:
+  - app_1.2.2
+  id: app_2.1.1
+  name: Generate AbstractProviderAdapter Code Snippet
+  status: READY
+  task_detail_file: tasks/app_2.1.1.yaml
+  type: AI_ASSISTED
+- depends_on:
+  - app_2.1.1
+  id: app_2.1.2
+  name: Review AbstractProviderAdapter Code Snippet
+  status: PENDING
+  task_detail_file: tasks/app_2.1.2.yaml
+  type: MANUAL
+- depends_on:
+  - app_2.1.2
+  - app_1.2.2
+  id: app_2.1.3
+  name: Write AbstractProviderAdapter to base.py
+  status: PENDING
+  task_detail_file: tasks/app_2.1.3.yaml
+  type: MANUAL
+- depends_on:
+  - app_1.2.2
+  id: app_2.2.1
+  name: Generate Core Data Classes Code Snippet
+  status: READY
+  task_detail_file: tasks/app_2.2.1.yaml
+  type: AI_ASSISTED
+- depends_on:
+  - app_2.2.1
+  id: app_2.2.2
+  name: Review Core Data Classes Code Snippet
+  status: PENDING
+  task_detail_file: tasks/app_2.2.2.yaml
+  type: MANUAL
+- depends_on:
+  - app_2.1.3
+  - app_2.2.2
+  id: app_2.2.3
+  name: Write Data Classes to base.py
+  status: PENDING
+  task_detail_file: tasks/app_2.2.3.yaml
+  type: MANUAL
+- depends_on:
+  - app_2.2.3
+  - app_1.3.6
+  id: app_2.2.4
+  name: Commit Core Abstractions (base.py)
+  status: PENDING
+  task_detail_file: tasks/app_2.2.4.yaml
+  type: MANUAL
+- depends_on:
+  - app_2.1.3
+  id: app_2.3.1
+  name: '[Optional] Generate Provider Factory Code Snippet'
+  status: PENDING
+  task_detail_file: tasks/app_2.3.1.yaml
+  type: AI_ASSISTED
+- depends_on:
+  - app_2.3.1
+  id: app_2.3.2
+  name: '[Optional] Review Provider Factory Code Snippet'
+  status: PENDING
+  task_detail_file: tasks/app_2.3.2.yaml
+  type: MANUAL
+- depends_on:
+  - app_2.3.2
+  - app_1.2.2
+  id: app_2.3.3
+  name: '[Optional] Write Provider Factory File'
+  status: PENDING
+  task_detail_file: tasks/app_2.3.3.yaml
+  type: MANUAL
+- depends_on:
+  - app_2.3.3
+  - app_1.3.6
+  id: app_2.3.4
+  name: '[Optional] Commit Provider Factory'
+  status: PENDING
+  task_detail_file: tasks/app_2.3.4.yaml
+  type: MANUAL
+- depends_on:
+  - app_1.2.2
+  id: app_2.4.1
+  name: '[Optional] Generate Provider Exceptions Code Snippet'
+  status: READY
+  task_detail_file: tasks/app_2.4.1.yaml
+  type: AI_ASSISTED
+- depends_on:
+  - app_2.4.1
+  id: app_2.4.2
+  name: '[Optional] Review Provider Exceptions Code Snippet'
+  status: PENDING
+  task_detail_file: tasks/app_2.4.2.yaml
+  type: MANUAL
+- depends_on:
+  - app_2.4.2
+  - app_1.2.2
+  id: app_2.4.3
+  name: '[Optional] Write Provider Exceptions File'
+  status: PENDING
+  task_detail_file: tasks/app_2.4.3.yaml
+  type: MANUAL
+- depends_on:
+  - app_2.4.3
+  - app_1.3.6
+  id: app_2.4.4
+  name: '[Optional] Commit Provider Exceptions'
+  status: PENDING
+  task_detail_file: tasks/app_2.4.4.yaml
+  type: MANUAL
+- depends_on:
+  - app_2.1.3
+  - app_2.2.3
+  id: app_3.1.1
+  name: Generate OpenAIProvider Skeleton Code Snippet
+  status: PENDING
+  task_detail_file: tasks/app_3.1.1.yaml
+  type: AI_ASSISTED
+- depends_on:
+  - app_3.1.1
+  id: app_3.1.2
+  name: Review OpenAIProvider Skeleton Code Snippet
+  status: PENDING
+  task_detail_file: tasks/app_3.1.2.yaml
+  type: MANUAL
+- depends_on:
+  - app_3.1.2
+  - app_1.2.2
+  id: app_3.1.3
+  name: Write OpenAIProvider Skeleton to File
+  status: PENDING
+  task_detail_file: tasks/app_3.1.3.yaml
+  type: MANUAL
+- depends_on:
+  - app_3.1.3
+  id: app_3.1.4
+  name: Ensure `requests` Dependency
+  status: PENDING
+  task_detail_file: tasks/app_3.1.4.yaml
+  type: MANUAL
+- depends_on:
+  - app_3.1.3
+  - app_3.1.4
+  - app_1.3.6
+  id: app_3.1.5
+  name: Commit OpenAIProvider Skeleton
+  status: PENDING
+  task_detail_file: tasks/app_3.1.5.yaml
+  type: MANUAL
+- depends_on:
+  - app_3.1.3
+  id: app_3.2.1
+  name: Generate Request Preparation Code Snippet
+  status: PENDING
+  task_detail_file: tasks/app_3.2.1.yaml
+  type: AI_ASSISTED
+- depends_on:
+  - app_3.2.1
+  id: app_3.2.2
+  name: Review Request Preparation Code Snippet
+  status: PENDING
+  task_detail_file: tasks/app_3.2.2.yaml
+  type: MANUAL
+- depends_on:
+  - app_3.1.3
+  - app_3.2.2
+  id: app_3.2.3
+  name: Integrate Request Preparation into complete_chat
+  status: PENDING
+  task_detail_file: tasks/app_3.2.3.yaml
+  type: MANUAL
+- depends_on:
+  - app_3.2.3
+  id: app_3.3.1
+  name: Generate API Call Code Snippet
+  status: PENDING
+  task_detail_file: tasks/app_3.3.1.yaml
+  type: AI_ASSISTED
+- depends_on:
+  - app_3.3.1
+  id: app_3.3.2
+  name: Review API Call Code Snippet
+  status: PENDING
+  task_detail_file: tasks/app_3.3.2.yaml
+  type: MANUAL
+- depends_on:
+  - app_3.2.3
+  - app_3.3.2
+  id: app_3.3.3
+  name: Integrate API Call into complete_chat
+  status: PENDING
+  task_detail_file: tasks/app_3.3.3.yaml
+  type: MANUAL
+- depends_on:
+  - app_3.3.3
+  id: app_3.4.1
+  name: Generate Response Handling Code Snippet
+  status: PENDING
+  task_detail_file: tasks/app_3.4.1.yaml
+  type: AI_ASSISTED
+- depends_on:
+  - app_3.4.1
+  id: app_3.4.2
+  name: Review Response Handling Code Snippet
+  status: PENDING
+  task_detail_file: tasks/app_3.4.2.yaml
+  type: MANUAL
+- depends_on:
+  - app_3.3.3
+  - app_3.4.2
+  id: app_3.4.3
+  name: Integrate Response Handling into complete_chat
+  status: PENDING
+  task_detail_file: tasks/app_3.4.3.yaml
+  type: MANUAL
+- depends_on:
+  - app_3.4.3
+  - app_3.1.5
+  id: app_3.4.4
+  name: Commit complete_chat Implementation
+  status: PENDING
+  task_detail_file: tasks/app_3.4.4.yaml
+  type: MANUAL
+- depends_on:
+  - app_3.4.3
+  id: app_3.5.1
+  name: '[Optional] Generate Logging Code Snippets'
+  status: PENDING
+  task_detail_file: tasks/app_3.5.1.yaml
+  type: AI_ASSISTED
+- depends_on:
+  - app_3.5.1
+  id: app_3.5.2
+  name: '[Optional] Review Logging Code Snippets'
+  status: PENDING
+  task_detail_file: tasks/app_3.5.2.yaml
+  type: MANUAL
+- depends_on:
+  - app_3.4.3
+  - app_3.5.2
+  id: app_3.5.3
+  name: '[Optional] Integrate Logging into OpenAIProvider'
+  status: PENDING
+  task_detail_file: tasks/app_3.5.3.yaml
+  type: MANUAL
+- depends_on:
+  - app_3.5.3
+  - app_3.4.4
+  id: app_3.5.4
+  name: '[Optional] Commit Logging Enhancement'
+  status: PENDING
+  task_detail_file: tasks/app_3.5.4.yaml
+  type: MANUAL
+- depends_on:
+  - app_1.2.2
+  id: app_4.1.1
+  name: Generate load_api_key Function Code Snippet
+  status: READY
+  task_detail_file: tasks/app_4.1.1.yaml
+  type: AI_ASSISTED
+- depends_on:
+  - app_4.1.1
+  id: app_4.1.2
+  name: Review load_api_key Code Snippet
+  status: PENDING
+  task_detail_file: tasks/app_4.1.2.yaml
+  type: MANUAL
+- depends_on:
+  - app_4.1.2
+  id: app_4.1.3
+  name: Ensure `python-dotenv` Dependency
+  status: PENDING
+  task_detail_file: tasks/app_4.1.3.yaml
+  type: MANUAL
+- depends_on:
+  - app_4.1.2
+  - app_4.1.3
+  - app_1.2.2
+  id: app_4.1.4
+  name: Write config.py File
+  status: PENDING
+  task_detail_file: tasks/app_4.1.4.yaml
+  type: MANUAL
+- depends_on:
+  - app_4.1.4
+  - app_1.3.6
+  id: app_4.1.5
+  name: Commit Configuration Utility
+  status: PENDING
+  task_detail_file: tasks/app_4.1.5.yaml
+  type: MANUAL
+- depends_on:
+  - app_1.2.2
+  - app_2.4.3
+  id: app_4.2.1
+  name: Generate retry_api_call Function Code Snippet
+  status: PENDING
+  task_detail_file: tasks/app_4.2.1.yaml
+  type: AI_ASSISTED
+- depends_on:
+  - app_4.2.1
+  id: app_4.2.2
+  name: Review retry_api_call Code Snippet
+  status: PENDING
+  task_detail_file: tasks/app_4.2.2.yaml
+  type: MANUAL
+- depends_on:
+  - app_4.2.2
+  - app_1.2.2
+  id: app_4.2.3
+  name: Write rate_limit.py File
+  status: PENDING
+  task_detail_file: tasks/app_4.2.3.yaml
+  type: MANUAL
+- depends_on:
+  - app_4.2.3
+  - app_1.3.6
+  id: app_4.2.4
+  name: Commit Rate Limit Utility
+  status: PENDING
+  task_detail_file: tasks/app_4.2.4.yaml
+  type: MANUAL
+- depends_on:
+  - app_1.2.2
+  id: app_4.3.1
+  name: '[Optional] Generate format_response Function Code Snippet'
+  status: READY
+  task_detail_file: tasks/app_4.3.1.yaml
+  type: AI_ASSISTED
+- depends_on:
+  - app_4.3.1
+  id: app_4.3.2
+  name: '[Optional] Review format_response Code Snippet'
+  status: PENDING
+  task_detail_file: tasks/app_4.3.2.yaml
+  type: MANUAL
+- depends_on:
+  - app_4.3.2
+  - app_1.2.2
+  id: app_4.3.3
+  name: '[Optional] Write formatter.py File'
+  status: PENDING
+  task_detail_file: tasks/app_4.3.3.yaml
+  type: MANUAL
+- depends_on:
+  - app_4.3.3
+  - app_1.3.6
+  id: app_4.3.4
+  name: '[Optional] Commit Formatter Utility'
+  status: PENDING
+  task_detail_file: tasks/app_4.3.4.yaml
+  type: MANUAL
+- depends_on:
+  - app_1.2.2
+  id: app_5.1.1
+  name: Generate Typer App Skeleton Code Snippet
+  status: READY
+  task_detail_file: tasks/app_5.1.1.yaml
+  type: AI_ASSISTED
+- depends_on:
+  - app_5.1.1
+  id: app_5.1.2
+  name: Review Typer App Skeleton Code Snippet
+  status: PENDING
+  task_detail_file: tasks/app_5.1.2.yaml
+  type: MANUAL
+- depends_on:
+  - app_5.1.2
+  id: app_5.1.3
+  name: Ensure `typer` Dependency
+  status: PENDING
+  task_detail_file: tasks/app_5.1.3.yaml
+  type: MANUAL
+- depends_on:
+  - app_5.1.2
+  - app_5.1.3
+  - app_1.2.2
+  id: app_5.1.4
+  name: Write cli.py File
+  status: PENDING
+  task_detail_file: tasks/app_5.1.4.yaml
+  type: MANUAL
+- depends_on:
+  - app_5.1.4
+  - app_1.3.6
+  id: app_5.1.5
+  name: Commit Typer Skeleton
+  status: PENDING
+  task_detail_file: tasks/app_5.1.5.yaml
+  type: MANUAL
+- depends_on:
+  - app_4.1.4
+  - app_3.4.3
+  - app_2.1.3
+  - app_2.2.3
+  id: app_5.2.1
+  name: Generate Imports for Chat Command Logic
+  status: PENDING
+  task_detail_file: tasks/app_5.2.1.yaml
+  type: AI_ASSISTED
+- depends_on:
+  - app_5.2.1
+  id: app_5.2.2
+  name: Review Imports for Chat Command Logic
+  status: PENDING
+  task_detail_file: tasks/app_5.2.2.yaml
+  type: MANUAL
+- depends_on:
+  - app_5.1.4
+  - app_5.2.2
+  id: app_5.2.3
+  name: Integrate Imports into cli.py
+  status: PENDING
+  task_detail_file: tasks/app_5.2.3.yaml
+  type: MANUAL
+- depends_on:
+  - app_4.1.4
+  id: app_5.2.4
+  name: Generate Config Loading Code Snippet
+  status: PENDING
+  task_detail_file: tasks/app_5.2.4.yaml
+  type: AI_ASSISTED
+- depends_on:
+  - app_5.2.4
+  id: app_5.2.5
+  name: Review Config Loading Code Snippet
+  status: PENDING
+  task_detail_file: tasks/app_5.2.5.yaml
+  type: MANUAL
+- depends_on:
+  - app_5.2.3
+  - app_5.2.5
+  id: app_5.2.6
+  name: Integrate Config Loading into chat function
+  status: PENDING
+  task_detail_file: tasks/app_5.2.6.yaml
+  type: MANUAL
+- depends_on:
+  - app_5.2.6
+  id: app_5.2.7
+  name: Generate Provider Instantiation Code Snippet
+  status: PENDING
+  task_detail_file: tasks/app_5.2.7.yaml
+  type: AI_ASSISTED
+- depends_on:
+  - app_5.2.7
+  id: app_5.2.8
+  name: Review Provider Instantiation Code Snippet
+  status: PENDING
+  task_detail_file: tasks/app_5.2.8.yaml
+  type: MANUAL
+- depends_on:
+  - app_5.2.6
+  - app_5.2.8
+  id: app_5.2.9
+  name: Integrate Provider Instantiation into chat function
+  status: PENDING
+  task_detail_file: tasks/app_5.2.9.yaml
+  type: MANUAL
+- depends_on:
+  - app_2.1.3
+  - app_2.2.3
+  id: app_5.2.10
+  name: Generate Request Preparation Code Snippet
+  status: PENDING
+  task_detail_file: tasks/app_5.2.10.yaml
+  type: AI_ASSISTED
+- depends_on:
+  - app_5.2.10
+  id: app_5.2.11
+  name: Review Request Preparation Code Snippet
+  status: PENDING
+  task_detail_file: tasks/app_5.2.11.yaml
+  type: MANUAL
+- depends_on:
+  - app_5.2.9
+  - app_5.2.11
+  id: app_5.2.12
+  name: Integrate Request Preparation into chat function
+  status: PENDING
+  task_detail_file: tasks/app_5.2.12.yaml
+  type: MANUAL
+- depends_on:
+  - app_5.2.12
+  - app_3.4.3
+  id: app_5.2.13
+  name: Generate Provider Call & Response Handling Snippet
+  status: PENDING
+  task_detail_file: tasks/app_5.2.13.yaml
+  type: AI_ASSISTED
+- depends_on:
+  - app_5.2.13
+  id: app_5.2.14
+  name: Review Provider Call & Response Handling Snippet
+  status: PENDING
+  task_detail_file: tasks/app_5.2.14.yaml
+  type: MANUAL
+- depends_on:
+  - app_5.2.12
+  - app_5.2.14
+  id: app_5.2.15
+  name: Integrate Provider Call & Response Handling into chat function
+  status: PENDING
+  task_detail_file: tasks/app_5.2.15.yaml
+  type: MANUAL
+- depends_on:
+  - app_5.2.3
+  - app_5.2.6
+  - app_5.2.9
+  - app_5.2.12
+  - app_5.2.15
+  - app_5.1.5
+  id: app_5.2.16
+  name: Commit Chat Command Implementation
+  status: PENDING
+  task_detail_file: tasks/app_5.2.16.yaml
+  type: MANUAL
+- depends_on:
+  - app_5.2.16
+  id: app_5.3.1
+  name: '[Optional] Ensure `rich` Dependency'
+  status: PENDING
+  task_detail_file: tasks/app_5.3.1.yaml
+  type: MANUAL
+- depends_on:
+  - app_5.2.15
+  id: app_5.3.2
+  name: '[Optional] Generate Rich Status Code Snippet'
+  status: PENDING
+  task_detail_file: tasks/app_5.3.2.yaml
+  type: AI_ASSISTED
+- depends_on:
+  - app_5.3.2
+  id: app_5.3.3
+  name: '[Optional] Review Rich Status Code Snippet'
+  status: PENDING
+  task_detail_file: tasks/app_5.3.3.yaml
+  type: MANUAL
+- depends_on:
+  - app_5.3.1
+  - app_5.3.3
+  - app_5.2.15
+  id: app_5.3.4
+  name: '[Optional] Integrate Rich Status into chat function'
+  status: PENDING
+  task_detail_file: tasks/app_5.3.4.yaml
+  type: MANUAL
+- depends_on:
+  - app_5.3.4
+  - app_5.2.16
+  id: app_5.3.5
+  name: '[Optional] Commit Rich Progress Enhancement'
+  status: PENDING
+  task_detail_file: tasks/app_5.3.5.yaml
+  type: MANUAL
+- depends_on:
+  - app_5.2.16
+  id: app_5.4.1
+  name: Generate Console Script TOML Snippet
+  status: PENDING
+  task_detail_file: tasks/app_5.4.1.yaml
+  type: AI_ASSISTED
+- depends_on:
+  - app_5.4.1
+  id: app_5.4.2
+  name: Review Console Script TOML Snippet
+  status: PENDING
+  task_detail_file: tasks/app_5.4.2.yaml
+  type: MANUAL
+- depends_on:
+  - app_5.4.2
+  id: app_5.4.3
+  name: Update pyproject.toml
+  status: PENDING
+  task_detail_file: tasks/app_5.4.3.yaml
+  type: MANUAL
+- depends_on:
+  - app_5.4.3
+  - app_1.3.6
+  id: app_5.4.4
+  name: Commit pyproject.toml Changes
+  status: PENDING
+  task_detail_file: tasks/app_5.4.4.yaml
+  type: MANUAL
+- depends_on:
+  - app_1.2.1
+  id: app_6.1.1
+  name: Setup Test Directory Structure
+  status: READY
+  task_detail_file: tasks/app_6.1.1.yaml
+  type: MANUAL
+- depends_on:
+  - app_6.1.1
+  id: app_6.1.2
+  name: Ensure Test Dependencies
+  status: PENDING
+  task_detail_file: tasks/app_6.1.2.yaml
+  type: MANUAL
+- depends_on:
+  - app_4.1.4
+  - app_6.1.2
+  id: app_6.1.3
+  name: Generate Unit Tests for Config Util
+  status: PENDING
+  task_detail_file: tasks/app_6.1.3.yaml
+  type: AI_ASSISTED
+- depends_on:
+  - app_6.1.3
+  id: app_6.1.4
+  name: Review Unit Tests for Config Util
+  status: PENDING
+  task_detail_file: tasks/app_6.1.4.yaml
+  type: MANUAL
+- depends_on:
+  - app_6.1.1
+  - app_6.1.4
+  id: app_6.1.5
+  name: Write Unit Tests for Config Util
+  status: PENDING
+  task_detail_file: tasks/app_6.1.5.yaml
+  type: MANUAL
+- depends_on:
+  - app_4.2.3
+  - app_2.4.3
+  - app_6.1.2
+  id: app_6.1.6
+  name: Generate Unit Tests for Rate Limit Util
+  status: PENDING
+  task_detail_file: tasks/app_6.1.6.yaml
+  type: AI_ASSISTED
+- depends_on:
+  - app_6.1.6
+  id: app_6.1.7
+  name: Review Unit Tests for Rate Limit Util
+  status: PENDING
+  task_detail_file: tasks/app_6.1.7.yaml
+  type: MANUAL
+- depends_on:
+  - app_6.1.1
+  - app_6.1.7
+  id: app_6.1.8
+  name: Write Unit Tests for Rate Limit Util
+  status: PENDING
+  task_detail_file: tasks/app_6.1.8.yaml
+  type: MANUAL
+- depends_on:
+  - app_3.4.3
+  - app_6.1.2
+  id: app_6.1.9
+  name: Generate Unit Tests for OpenAI Provider
+  status: PENDING
+  task_detail_file: tasks/app_6.1.9.yaml
+  type: AI_ASSISTED
+- depends_on:
+  - app_6.1.9
+  id: app_6.1.10
+  name: Review Unit Tests for OpenAI Provider
+  status: PENDING
+  task_detail_file: tasks/app_6.1.10.yaml
+  type: MANUAL
+- depends_on:
+  - app_6.1.1
+  - app_6.1.10
+  id: app_6.1.11
+  name: Write Unit Tests for OpenAI Provider
+  status: PENDING
+  task_detail_file: tasks/app_6.1.11.yaml
+  type: MANUAL
+- depends_on:
+  - app_6.1.5
+  - app_6.1.8
+  - app_6.1.11
+  - app_6.1.2
+  - app_1.3.6
+  id: app_6.1.12
+  name: Commit Unit Tests
+  status: PENDING
+  task_detail_file: tasks/app_6.1.12.yaml
+  type: MANUAL
+- depends_on:
+  - app_6.1.12
+  id: app_6.1.13
+  name: Run Unit Tests
+  status: PENDING
+  task_detail_file: tasks/app_6.1.13.yaml
+  type: MANUAL
+- depends_on:
+  - app_5.4.4
+  - app_1.5.1
+  - app_1.1.4
+  id: app_6.2.1
+  name: Prepare Environment for Manual Testing
+  status: PENDING
+  task_detail_file: tasks/app_6.2.1.yaml
+  type: MANUAL
+- depends_on:
+  - orchestrate_8_refine
+  id: app_6.2.2```
+  name: null
+  status: READY
+  task_detail_file: tasks/app_6.2.2```.yaml
+  type: MANUAL

@@ -1,0 +1,16 @@
+id: app_3.4.1
+name: Generate Response Handling Code Snippet
+status: PENDING
+type: AI_ASSISTED
+depends_on:
+- app_3.3.3
+ai_details:
+  model: o4-mini
+  prompt: 'Goal: Generate snippet for response status checks, JSON parsing, error
+    handling.
+
+    Context: After `response = requests.post(...)`.
+
+    Instructions: Follow spec for HTTP codes, JSON errors, custom exceptions.'
+outputs:
+- Response handling snippet generated.

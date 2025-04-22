@@ -1,0 +1,99 @@
+# /home/verlyn13/Projects/happy-llm-cli/pyproject.toml
+
+[build-system]
+# Standard build system definition using setuptools
+requires = ["setuptools>=61.0"] # Use a reasonably modern version of setuptools
+build-backend = "setuptools.build_meta"
+
+[project]
+# Core project metadata - aligns with your plan's naming
+name = "happy_llm_cli"           # Python package name (snake_case)
+version = "0.1.0"                 # Initial version (update as needed)
+description = "A Python CLI tool for interacting with LLMs via abstracted providers." # From your summary
+readme = "README.md"              # Link to your README
+requires-python = ">=3.8"         # Minimum Python version (adjust if needed)
+license = { file = "LICENSE" }    # Assumes license file is named LICENSE
+
+# Author and maintainer information
+authors = [
+    { name = "Jeffrey | Happy Patterns" }
+]
+maintainers = [
+    { name = "Jeffrey | Happy Patterns" }
+]
+
+# Keywords for PyPI discovery (optional)
+# keywords = ["llm", "cli", "openai", "ai", "nlp"]
+
+# Define dependencies - CRITICAL section
+# List libraries needed for the project to run.
+# Check for latest stable versions as of April 20, 2025 using PyPI.
+dependencies = [
+    "typer[all]>=0.15.2",  # For the CLI Layer (check latest stable version)
+    "python-dotenv>=1.1.0", # For loading .env files (check latest)
+    "requests>=2.32.0",    # For making HTTP requests (or httpx if you prefer async)
+    "openai>=1.75.0",    # For OpenAI API (check latest)
+    "requests>=2.32.0",    # For making HTTP requests (or httpx if you prefer async)
+    "pytest>=8.3.5",    # For testing (check latest)
+    # Add other core dependencies identified in your plan/code
+    # e.g., if using 'rich' for formatting: "rich>=13.7.0,<14.0.0"
+]
+
+# Project URLs - Link to your repository
+[project.urls]
+Homepage = "https://github.com/happy-patterns/happy-llm-cli"
+Repository = "https://github.com/happy-patterns/happy-llm-cli"
+# Add "Documentation" or "Changelog" links if applicable later
+
+# This section defines the command-line script(s)
+[project.scripts]
+# Creates the 'happy-llm' command pointing to the main function in cli.py
+# **NOTE:** Your plan Section 7 says 'hp-llm', but based on your initial request
+# and previous steps, we are using 'happy-llm'. Please ensure consistency.
+happy-llm = "happy_llm_cli.cli:main" # Assumes entry function is 'main' in happy_llm_cli/cli.py
+happy-llm-orchestrate = "orchestration.run:cli" # Orchestration CLI entry point
+
+# Optional: Configure setuptools, e.g., package discovery
+[tool.setuptools.packages.find]
+where = ["."]                      # Look for packages in the current directory
+include = ["happy_llm_cli*", "orchestration*"]       # Find the main package, orchestration, and subpackages
+exclude = ["tests*", "examples*"]   # Exclude test/example directories from the installable package
+
+# --- Linting and Type Checking Configuration ---
+[tool.ruff]
+line-length = 88
+indent-width = 4
+target-version = "py310"
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "B", "ANN", "TID"]
+
+[tool.ruff.format]
+include = ["*.py", "*.pyi"]
+
+[tool.mypy]
+python_version = "3.10"
+pretty = true
+show_error_codes = true
+disallow_untyped_defs = true
+check_untyped_defs = true
+warn_return_any = true
+warn_unused_ignores = true
+no_implicit_optional = true
+mypy_path = "src"
+files = ["src"]
+show_column_numbers = true
+follow_imports = "normal"
+
+# Optional: Define dependencies for development/testing (good practice)
+# [project.optional-dependencies]
+# [project.optional-dependencies]
+# test = [
+#    "pytest>=8.3.5,<9.0.0",
+#    "pytest-mock>=3.10.0,<4.0.0",
+#    "requests-mock>=1.11.0,<2.0.0",
+# ]
+# dev = [
+#    "ruff>=0.0.283,<1.0.0",
+#    "mypy>=1.9.0,<2.0.0",
+# ]

@@ -1,0 +1,12 @@
+id: app_4.2.4
+name: Commit Rate Limit Utility
+status: PENDING
+type: MANUAL
+depends_on:
+- app_4.2.3
+- app_1.3.6
+manual_instructions:
+- "Stage and commit `retry_api_call` file:\n  git add happy_llm_cli/utils/rate_limit.py\n\
+  \  git commit -m \"feat: Add simple API call retry utility (retry_api_call)\""
+outputs:
+- Rate limit utility (`rate_limit.py`) committed to Git.

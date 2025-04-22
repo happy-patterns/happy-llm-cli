@@ -1,0 +1,15 @@
+id: app_1.3.2
+name: Generate .gitignore Content
+status: PENDING
+type: AI_ASSISTED
+depends_on:
+- app_1.3.1
+ai_details:
+  model: gpt-4.1-nano
+  prompt: "Goal: Generate a comprehensive .gitignore file for a Python project.\n\
+    Context:\n  - Uses `.venv/`\n  - Sensitive config in `.env` (must NOT be committed)\n\
+    \  - Standard Python artifacts, build artifacts, IDE folders,\n    and logs should\
+    \ be ignored.\nInstructions:\n  - List entries only; comments only if essential.\n\
+    Output Format: Plain text for `.gitignore`."
+outputs:
+- Text content for `.gitignore` prepared.

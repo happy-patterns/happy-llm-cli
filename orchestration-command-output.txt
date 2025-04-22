@@ -1,0 +1,241 @@
+➜  happy-llm-cli git:(main) ✗ happy-llm-orchestrate --start-from orchestrate_8_refine
+Next task: orchestrate_8_refine - Refine orchestrator (fallback prompts, automated script handler)
+Marked orchestrate_8_refine as RUNNING
+
+Sending prompt to OpenAI API...
+
+LLM response:
+ Here’s an updated `orchestration/run.py` that adds:
+
+- AUTOMATED_SCRIPT tasks (shell commands or scripts)
+- Fallback prompts for AI_ASSISTED tasks
+- Token‐usage logging in `run_log.jsonl`
+- A `--start-from <task_id>` CLI switch
+
+```python
+#!/usr/bin/env python3
+import argparse
+import json
+import subprocess
+import sys
+import time
+from pathlib import Path
+
+import openai
+
+# === Configuration ===
+LOG_FILE_DEFAULT = "run_log.jsonl"
+MODEL_TOKEN_RATES = {
+    # cost per 1k tokens in USD (example rates)
+    "gpt-3.5-turbo": 0.002,
+    "gpt-4": 0.06,
+}
+
+
+def load_plan(plan_path):
+    with open(plan_path, 'r') as f:
+        return json.load(f)
+
+
+def append_log(entry, log_file):
+    with open(log_file, 'a') as lf:
+        lf.write(json.dumps(entry) + "\n")
+
+
+def estimate_cost(usage, model):
+    """Return a rough cost estimate in USD based on usage dict."""
+    rate = MODEL_TOKEN_RATES.get(model, 0.0)
+    total_tokens = usage.get("total_tokens", 0)
+    return round((total_tokens / 1000) * rate, 6)
+
+
+def run_automated_script(task, context):
+    """
+    Execute a shell command or script.
+    Fields supported on task:
+      - script: a string containing shell commands
+      - script_path: path to an executable script file
+    Returns:
+      A dict with stdout, stderr, exit_code.
+    """
+    script = task.get("script")
+    script_path = task.get("script_path")
+
+    if script_path:
+        cmd = ["bash", str(script_path)]
+    elif script:
+        # run inline script
+        cmd = ["bash", "-c", script]
+    else:
+        raise ValueError(f"Task {task['id']} missing 'script' or 'script_path'")
+
+    proc = subprocess.run(
+        cmd,
+        stdout=subprocess.PIPE,
+        stderr=subprocess.PIPE,
+        text=True,
+    )
+
+    return {
+        "stdout": proc.stdout.strip(),
+        "stderr": proc.stderr.strip(),
+        "exit_code": proc.returncode,
+    }
+
+
+def run_ai_assisted(task, context):
+    """
+    Run an AI-assisted task with primary and fallback prompts.
+    Expects task fields:
+      - model: e.g., "gpt-4"
+      - prompt_template: string template, can refer to context
+      - fallback_prompt_template: alternative template if first fails
+      - parameters: dict of variables to format into the prompt
+    """
+    model = task.get("model", "gpt-3.5-turbo")
+    params = task.get("parameters", {})
+    # Merge context into params for formatting
+    fmt_context = {**context, **params}
+
+    def build_prompt(template):
+        return template.format(**fmt_context)
+
+    prompt_primary = build_prompt(task["prompt_template"])
+    prompt_fallback = task.get("fallback_prompt_template") and build_prompt(
+        task["fallback_prompt_template"]
+    )
+
+    for attempt, prompt in enumerate([prompt_primary, prompt_fallback], start=1):
+        if not prompt:
+            continue  # skip missing fallback
+        try:
+            resp = openai.ChatCompletion.create(
+                model=model,
+                messages=[{"role": "user", "content": prompt}],
+            )
+            content = resp.choices[0].message.content.strip()
+            usage = resp.usage.to_dict()
+            # consider empty content a failure
+            if content:
+                return {
+                    "content": content,
+                    "usage": usage,
+                    "prompt_used": "fallback" if attempt == 2 else "primary",
+                }
+            else:
+                print(f"[WARN] Task {task['id']} empty response on attempt {attempt}")
+        except Exception as e:
+            print(f"[ERROR] Task {task['id']} AI call failed on attempt {attempt}: {e}")
+
+    raise RuntimeError(f"AI_ASSISTED task {task['id']} failed both primary and fallback prompts")
+
+
+def run_task(task, context):
+    """
+    Dispatch a task based on its type.
+    Updates context in-place with any outputs.
+    Returns log_body dict.
+    """
+    task_id = task["id"]
+    ttype = task["type"]
+    timestamp = time.time()
+
+    log_entry = {
+        "task_id": task_id,
+        "type": ttype,
+        "timestamp": timestamp,
+        "result": None,
+        "usage": None,
+        "cost_usd": None,
+        "error": None,
+    }
+
+    try:
+        if ttype == "AUTOMATED_SCRIPT":
+            result = run_automated_script(task, context)
+            context[task_id] = result
+            log_entry["result"] = {
+                "stdout": result["stdout"],
+                "stderr": result["stderr"],
+                "exit_code": result["exit_code"],
+            }
+
+        elif ttype == "AI_ASSISTED":
+            ai_out = run_ai_assisted(task, context)
+            context[task_id] = ai_out["content"]
+            log_entry["result"] = {"content": ai_out["content"], "prompt_used": ai_out["prompt_used"]}
+            log_entry["usage"] = ai_out["usage"]
+            log_entry["cost_usd"] = estimate_cost(ai_out["usage"], task.get("model", ""))
+
+        else:
+            raise NotImplementedError(f"Unknown task type: {ttype}")
+
+    except Exception as e:
+        log_entry["error"] = str(e)
+        # Optionally re-raise or continue; here we re-raise to halt orchestrator
+        raise
+
+    return log_entry
+
+
+def main():
+    parser = argparse.ArgumentParser(description="Orchestrate a plan of tasks.")
+    parser.add_argument("plan_file", help="Path to JSON plan file")
+    parser.add_argument(
+        "--start-from",
+        dest="start_from",
+        help="If set, skip tasks until this task_id is encountered",
+    )
+    parser.add_argument(
+        "--log-file",
+        default=LOG_FILE_DEFAULT,
+        help=f"JSONL log file (default: {LOG_FILE_DEFAULT})",
+    )
+    args = parser.parse_args()
+
+    plan = load_plan(args.plan_file)
+    context = {}
+    seen_start = args.start_from is None
+
+    for task in plan.get("tasks", []):
+        tid = task.get("id")
+        if not seen_start:
+            if tid == args.start_from:
+                seen_start = True
+            else:
+                print(f"[SKIP] Task {tid}")
+                continue
+
+        print(f"[RUNNING] Task {tid} ({task['type']})")
+        try:
+            log_entry = run_task(task, context)
+            append_log(log_entry, args.log_file)
+            print(f"[OK]    Task {tid} completed")
+        except Exception as e:
+            # log failure
+            log_entry = {
+                "task_id": tid,
+                "type": task.get("type"),
+                "timestamp": time.time(),
+                "error": str(e),
+            }
+            append_log(log_entry, args.log_file)
+            print(f"[FAIL]  Task {tid}: {e}", file=sys.stderr)
+            sys.exit(1)
+
+    print("All done.")
+
+
+if __name__ == "__main__":
+    main()
+```
+
+Save this as `orchestration/run.py`.
+
+Key points:
+1. **AUTOMATED_SCRIPT** tasks execute via `bash`.
+2. **AI_ASSISTED** tasks try the main prompt first, then a fallback prompt on failure or empty responses.
+3. Each run writes a JSON line to `run_log.jsonl`, including `usage` and a USD cost estimate.
+4. You can resume mid‐plan with `--start-from <task_id>`.
+Enter choice [y=accept, r=retry, e=error, m=manual]: y
+Error writing log file /home/verlyn13/Projects/happy-llm-cli/orchestration/logs/run_log.jsonl: Object of type CompletionTokensDetails is not JSON serializable

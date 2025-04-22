@@ -1,0 +1,12 @@
+id: app_6.1.13
+name: Run Unit Tests
+status: PENDING
+type: MANUAL
+depends_on:
+- app_6.1.12
+manual_instructions:
+- '- Execute the test suite from the project root: `pytest`.
+
+  - Verify all tests pass. Debug any failures.'
+outputs:
+- Pytest execution report showing passing tests.

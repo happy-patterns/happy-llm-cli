@@ -1,0 +1,20 @@
+ai_details:
+  model: o4-mini
+  prompt: 'Add JSONL logging to `orchestration/run.py`:
+
+    - On task start: append a log entry with fields `timestamp`, `task_id`, `event:
+    START_TASK` to `orchestration/logs/run_log.jsonl`.
+
+    - On task completion: log `COMPLETE_TASK` or `ERROR_TASK` with updated `status`.
+
+    - Ensure logs are newline-delimited and file is opened in append mode.
+
+    '
+depends_on:
+- orchestrate_4_manual_handler
+id: orchestrate_5_logging
+name: Add basic logging
+outputs:
+- Basic logging implemented to `orchestration/logs/run_log.jsonl`.
+status: DONE
+type: AI_ASSISTED

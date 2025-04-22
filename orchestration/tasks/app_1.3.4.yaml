@@ -1,0 +1,14 @@
+id: app_1.3.4
+name: Generate Initial README Content
+status: PENDING
+type: AI_ASSISTED
+depends_on:
+- app_1.3.1
+ai_details:
+  model: gpt-4.1-nano
+  prompt: "Goal: Generate minimal initial content for README.md.\nContext:\n  - Project:\
+    \ happy-llm-cli\n  - Purpose: A Python CLI for interacting with LLMs via OpenAI\n\
+    Instructions:\n  - Include only H1 title and one-sentence description.\nOutput\
+    \ Format: Markdown text."
+outputs:
+- Minimal markdown for `README.md` prepared.

@@ -1,0 +1,12 @@
+id: app_5.4.4
+name: Commit pyproject.toml Changes
+status: PENDING
+type: MANUAL
+depends_on:
+- app_5.4.3
+- app_1.3.6
+manual_instructions:
+- "Stage `pyproject.toml` and commit:\n  git add pyproject.toml\n  git commit -m \"\
+  build: Define console script entry point\""
+outputs:
+- '`pyproject.toml` changes committed to Git.'

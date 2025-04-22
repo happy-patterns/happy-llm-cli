@@ -1,0 +1,26 @@
+id: app_3.1.1
+name: Generate OpenAIProvider Skeleton Code Snippet
+status: PENDING
+type: AI_ASSISTED
+depends_on:
+- app_2.1.3
+- app_2.2.3
+ai_details:
+  model: gpt-4.1-mini
+  prompt: "Goal: Generate ONLY the Python code snippet for the initial skeleton of\
+    \ the `OpenAIProvider` class.\nContext:\n  - Target file: `happy_llm_cli/providers/openai_provider.py`.\n\
+    \  - Inherits from `AbstractProviderAdapter` in `.base`.\n  - Needs `__init__(self,\
+    \ api_key: str, model: Optional[str] = None)` storing validated key and model\
+    \ (defaulting to 'gpt-4o-mini').\n  - Needs placeholder `complete_chat(self, request:\
+    \ ChatRequest) -> ChatResponse`.\n  - Requires imports: `.base` classes, `typing`,\
+    \ `requests`.\n  - Needs constants: `OPENAI_API_URL`, `DEFAULT_OPENAI_MODEL`.\n\
+    Instructions:\n  - Import `AbstractProviderAdapter`, `ChatRequest`, `ChatResponse`\
+    \ from `.base`.\n  - Import `Optional`, `Dict`, `Any`, `List` from `typing`.\n\
+    \  - Import `requests`.\n  - Define `OPENAI_API_URL = \"https://api.openai.com/v1/chat/completions\"\
+    `.\n  - Define `DEFAULT_OPENAI_MODEL = \"gpt-4o-mini\"`.\n  - Define `class OpenAIProvider(AbstractProviderAdapter):`.\n\
+    \  - Implement `__init__` method: store `api_key` (e.g., `self._api_key`) after\
+    \ validating non-empty; store `model` using fallback.\n  - Implement `complete_chat`\
+    \ signature with `pass` or `raise NotImplementedError`.\n  - DO NOT include implementation\
+    \ logic.\nOutput Format: Python code snippet for skeleton, imports, and constants."
+outputs:
+- Python code snippet for `OpenAIProvider` skeleton generated.

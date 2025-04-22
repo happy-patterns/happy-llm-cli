@@ -1,0 +1,18 @@
+id: app_4.1.1
+name: Generate load_api_key Function Code Snippet
+status: PENDING
+type: AI_ASSISTED
+depends_on:
+- app_1.2.2
+ai_details:
+  model: gpt-4.1-mini
+  prompt: "Goal: Generate ONLY the Python code snippet for the `load_api_key` function.\n\
+    Context:\n  - Target file: `happy_llm_cli/utils/config.py`.\n  - Function signature:\
+    \ `load_api_key(provider_name: str) -> str`.\n  - Needs to call `load_dotenv()`.\n\
+    \  - Construct env var name `<PROVIDER>_API_KEY`.\n  - Use `os.getenv()` and validate\
+    \ (raise `ValueError` if missing).\nInstructions:\n  - Import `os` and `load_dotenv`.\n\
+    \  - Define the function and implement logic.\n  - Include a docstring.\n  - DO\
+    \ NOT include other code.\nOutput Format: Python code snippet with imports and\
+    \ function."
+outputs:
+- Python code snippet for `load_api_key` generated.

@@ -1,0 +1,16 @@
+id: app_2.2.2
+name: Review Core Data Classes Code Snippet
+status: PENDING
+type: MANUAL
+depends_on:
+- app_2.2.1
+manual_instructions:
+- "Manually review the generated code snippet against requirements and\nreview points:\n\
+  \  - Verify exact class names: `ChatMessage`, `ChatRequest`, `ChatResponse`.\n \
+  \ - Verify `@dataclass` decorator is used for all.\n  - Verify all specified fields\
+  \ exist with correct names (snake_case)\n    and types (including `List`, `Optional`,\
+  \ `Dict`, `Any`, forward references).\n  - Verify default values (`= None`).\n \
+  \ - Ensure no extra fields or methods were added.\n  - Check necessary imports (`dataclasses`,\
+  \ `typing`)."
+outputs:
+- Code snippet for data classes reviewed and approved/corrected.

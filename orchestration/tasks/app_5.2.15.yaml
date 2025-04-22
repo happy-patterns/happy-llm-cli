@@ -1,0 +1,13 @@
+id: app_5.2.15
+name: Integrate Provider Call & Response Handling into chat function
+status: PENDING
+type: MANUAL
+depends_on:
+- app_5.2.12
+- app_5.2.14
+manual_instructions:
+- 'Open `happy_llm_cli/cli.py` and insert the reviewed snippet
+
+  after request preparation.'
+outputs:
+- Provider call/response handling logic integrated into `chat` function.

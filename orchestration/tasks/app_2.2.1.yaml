@@ -1,0 +1,23 @@
+id: app_2.2.1
+name: Generate Core Data Classes Code Snippet
+status: PENDING
+type: AI_ASSISTED
+depends_on:
+- app_1.2.2
+ai_details:
+  model: gpt-4.1-mini
+  prompt: "Goal: Generate ONLY the Python code snippet for three data classes:\n`ChatMessage`,\
+    \ `ChatRequest`, and `ChatResponse`.\nContext:\n  - Target file: `happy_llm_cli/providers/base.py`.\n\
+    \  - Use standard Python `@dataclass`.\n  - Naming convention: PascalCase for\
+    \ classes, snake_case for fields.\nInstructions:\n  - Import `dataclass` from\
+    \ `dataclasses`.\n  - Import necessary types (`List`, `Optional`, `Dict`, `Any`)\
+    \ from `typing`.\n  - Define `ChatMessage(role: str, content: str)`.\n  - Define\
+    \ `ChatRequest(messages: List['ChatMessage'],\n    model: Optional[str] = None)`.\
+    \ Note: Use forward reference\n    'ChatMessage' if defined in the same pass or\
+    \ ensure order.\n  - Define `ChatResponse(text: str,\n    usage: Optional[Dict[str,\
+    \ Any]] = None,\n    error: Optional[str] = None)`.\n  - Use `@dataclass` decorator\
+    \ for all three.\n  - DO NOT include the `AbstractProviderAdapter` class or any\
+    \ other code in this snippet.\nOutput Format: Python code snippet containing the\
+    \ three data class definitions and necessary imports."
+outputs:
+- Python code snippet for core data classes generated.

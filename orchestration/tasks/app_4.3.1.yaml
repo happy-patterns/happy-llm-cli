@@ -1,0 +1,16 @@
+id: app_4.3.1
+name: '[Optional] Generate format_response Function Code Snippet'
+status: PENDING
+type: AI_ASSISTED
+depends_on:
+- app_1.2.2
+ai_details:
+  model: gpt-4.1-mini
+  prompt: "Goal: Generate ONLY the Python code snippet for the placeholder `format_response`\
+    \ function.\nContext:\n  - Target file: `happy_llm_cli/utils/formatter.py`.\n\
+    \  - Signature: `format_response(text: str) -> str`.\n  - Implementation: `return\
+    \ text.strip()`.\nInstructions:\n  - Define the function and its body.\n  - Add\
+    \ a docstring indicating placeholder.\n  - DO NOT include imports.\nOutput Format:\
+    \ Python code snippet for the function."
+outputs:
+- '[Optional] Python code snippet for `format_response` generated.'

@@ -1,0 +1,11 @@
+id: app_1.5.2
+name: Create .env.example File
+status: PENDING
+type: MANUAL
+depends_on:
+- app_1.3.1
+manual_instructions:
+- "Create `.env.example` with:\n  # OPENAI_API_KEY=Your_OpenAI_API_Key_Here\nStage\
+  \ & commit it."
+outputs:
+- '`.env.example` created and committed.'

@@ -1,0 +1,12 @@
+depends_on:
+- app_1.1.4
+id: app_1.2.1
+manual_instructions:
+- "In your container (or mapped volume), run:\n  mkdir -p happy_llm_cli/providers\n\
+  \  mkdir -p happy_llm_cli/utils"
+name: Create Project Source Directories
+outputs:
+- Directory `happy_llm_cli/providers/` created.
+- Directory `happy_llm_cli/utils/` created.
+status: DONE
+type: MANUAL

@@ -1,0 +1,12 @@
+id: app_6.1.10
+name: Review Unit Tests for OpenAI Provider
+status: PENDING
+type: MANUAL
+depends_on:
+- app_6.1.9
+manual_instructions:
+- "Manually review the generated test code for `test_openai_provider.py`:\n  - Check\
+  \ imports and fixtures.\n  - Verify `requests.post` mock setups for each scenario.\n\
+  \  - Confirm assertions for returned `ChatResponse` or raised exceptions."
+outputs:
+- Code snippet for `test_openai_provider.py` reviewed and approved/corrected.

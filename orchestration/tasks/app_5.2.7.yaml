@@ -1,0 +1,16 @@
+id: app_5.2.7
+name: Generate Provider Instantiation Code Snippet
+status: PENDING
+type: AI_ASSISTED
+depends_on:
+- app_5.2.6
+ai_details:
+  model: o4-mini
+  prompt: "Goal: Generate ONLY the Python code snippet for instantiating the provider\
+    \ in `chat`.\nContext:\n  - Variables: `provider`, `api_key`, `model`.\n  - Factory:\
+    \ `get_provider(provider, config)` (catch NotImplementedError, ValueError, ProviderError).\n\
+    \  - Direct: `OpenAIProvider(api_key, model)` (catch ValueError).\nInstructions:\n\
+    \  - Write the try/except block with appropriate exception catches.\nOutput Format:\
+    \ Python code snippet for the try/except."
+outputs:
+- Python code snippet for provider instantiation generated.

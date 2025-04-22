@@ -1,0 +1,12 @@
+id: app_5.4.3
+name: Update pyproject.toml
+status: PENDING
+type: MANUAL
+depends_on:
+- app_5.4.2
+manual_instructions:
+- 'Ensure `pyproject.toml` exists and add/update the
+
+  `[project.scripts]` section with the reviewed snippet.'
+outputs:
+- '`pyproject.toml` created/updated with console script entry point.'

@@ -1,0 +1,11 @@
+id: app_3.1.2
+name: Review OpenAIProvider Skeleton Code Snippet
+status: PENDING
+type: MANUAL
+depends_on:
+- app_3.1.1
+manual_instructions:
+- "Manually review the generated skeleton:\n  - Imports, constants, inheritance, method\
+  \ signatures, no extras."
+outputs:
+- '`OpenAIProvider` skeleton reviewed and corrected.'

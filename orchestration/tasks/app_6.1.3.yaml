@@ -1,0 +1,27 @@
+id: app_6.1.3
+name: Generate Unit Tests for Config Util
+status: PENDING
+type: AI_ASSISTED
+depends_on:
+- app_4.1.4
+- app_6.1.2
+ai_details:
+  model: gpt-4.1-mini
+  prompt: "Goal: Generate ONLY the Python code snippet for Pytest unit tests for the\
+    \ `load_api_key` function.\nContext:\n  - Target file: `tests/utils/test_config.py`.\n\
+    \  - Function to test: `load_api_key` from `happy_llm_cli.utils.config`.\n  -\
+    \ Needs mocking for `os.getenv` and `dotenv.load_dotenv`. Use `mocker` fixture\
+    \ from `pytest-mock`.\n  - Test Cases:\n      1. Success: `os.getenv` returns\
+    \ a valid key.\n      2. Failure: `os.getenv` returns `None`. (Expect `ValueError`).\n\
+    \      3. Failure: `os.getenv` returns an empty string. (Expect `ValueError`).\n\
+    Instructions:\n  - Import `pytest`, `load_api_key`.\n  - Create test function\
+    \ `test_load_api_key_success(mocker)`: Mock `load_dotenv` and `os.getenv` to return\
+    \ 'test-key'. Call `load_api_key` and assert result. Assert mocks were called.\n\
+    \  - Create test function `test_load_api_key_missing(mocker)`: Mock `load_dotenv`\
+    \ and `os.getenv` to return `None`. Use `pytest.raises(ValueError)` to assert\
+    \ exception.\n  - Create test function `test_load_api_key_empty(mocker)`: Mock\
+    \ `load_dotenv` and `os.getenv` to return \"\". Use `pytest.raises(ValueError)`.\n\
+    Output Format: Python code snippet containing the test functions and necessary\
+    \ imports."
+outputs:
+- Python code snippet for `test_config.py` generated.

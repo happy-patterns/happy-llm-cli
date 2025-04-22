@@ -1,0 +1,12 @@
+id: app_2.2.4
+name: Commit Core Abstractions (base.py)
+status: PENDING
+type: MANUAL
+depends_on:
+- app_2.2.3
+- app_1.3.6
+manual_instructions:
+- "Stage the changes to `happy_llm_cli/providers/base.py`.\nRun:\n  git add happy_llm_cli/providers/base.py\n\
+  \  git commit -m \"feat: Define core provider abstractions and data models\""
+outputs:
+- Changes to `base.py` committed to Git.

@@ -1,0 +1,10 @@
+id: app_1.6.1
+name: Create Documentation Directory
+status: PENDING
+type: MANUAL
+depends_on:
+- orchestrate_8_refine
+manual_instructions:
+- Create a top-level `docs/` folder.
+outputs:
+- '`docs/` directory created.'

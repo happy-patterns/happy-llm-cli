@@ -1,0 +1,15 @@
+id: app_1.3.6
+name: Make Initial Git Commit
+status: PENDING
+type: MANUAL
+depends_on:
+- app_1.3.1
+- app_1.1.2
+- app_1.3.3
+- app_1.3.5
+- app_1.2.2
+manual_instructions:
+- "Stage and commit new files:\n  git add .\n  git commit -m \"Initial commit: project\
+  \ structure and environment setup\""
+outputs:
+- Initial commit in Git history.

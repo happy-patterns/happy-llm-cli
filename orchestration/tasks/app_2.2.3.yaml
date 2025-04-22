@@ -1,0 +1,19 @@
+id: app_2.2.3
+name: Write Data Classes to base.py
+status: PENDING
+type: MANUAL
+depends_on:
+- app_2.1.3
+- app_2.2.2
+manual_instructions:
+- 'Open `happy_llm_cli/providers/base.py`.
+
+  Append the reviewed data class code snippet (including imports,
+
+  potentially merging with existing imports) into the file.
+
+  Ensure imports are handled correctly (e.g., at the top).
+
+  Ensure class definitions are correctly ordered if not using forward references everywhere.'
+outputs:
+- '`happy_llm_cli/providers/base.py` updated with data class definitions.'

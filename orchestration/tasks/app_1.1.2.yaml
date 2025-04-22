@@ -1,0 +1,13 @@
+depends_on:
+- app_1.1.1
+id: app_1.1.2
+manual_instructions:
+- 'Write the prepared content to `Containerfile` in the project root.
+
+  Write the prepared content to `.containerignore` in the project root.'
+name: Write Container Environment Files
+outputs:
+- '`Containerfile` created in project root.'
+- '`.containerignore` created in project root.'
+status: DONE
+type: MANUAL

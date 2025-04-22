@@ -1,0 +1,13 @@
+id: app_5.2.12
+name: Integrate Request Preparation into chat function
+status: PENDING
+type: MANUAL
+depends_on:
+- app_5.2.9
+- app_5.2.11
+manual_instructions:
+- 'Open `happy_llm_cli/cli.py` and insert the reviewed snippet
+
+  after provider instantiation.'
+outputs:
+- Request preparation logic integrated into `chat` function.

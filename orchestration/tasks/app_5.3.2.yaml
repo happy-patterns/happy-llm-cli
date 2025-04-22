@@ -1,0 +1,15 @@
+id: app_5.3.2
+name: '[Optional] Generate Rich Status Code Snippet'
+status: PENDING
+type: AI_ASSISTED
+depends_on:
+- app_5.2.15
+ai_details:
+  model: gpt-4.1-mini
+  prompt: "Goal: Generate ONLY the Python code snippet for wrapping a line with `rich.status.Status`.\n\
+    Context:\n  - Wrap the provider call line inside a `with Status(...)` block.\n\
+    Instructions:\n  - Import `Status` from `rich.status`.\n  - Provide the `with\
+    \ Status(\"Thinking...\", spinner=\"dots\")` block.\nOutput Format: Python code\
+    \ snippet for the import and the `with` block."
+outputs:
+- '[Optional] Python code snippet for `rich.status` generated.'

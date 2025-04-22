@@ -1,0 +1,17 @@
+id: app_6.1.1
+name: Setup Test Directory Structure
+status: PENDING
+type: MANUAL
+depends_on:
+- app_1.2.1
+manual_instructions:
+- '- Create the `tests/` directory in the project root.
+
+  - Create `tests/__init__.py`.
+
+  - Create mirroring subdirectories if desired: `tests/utils/`, `tests/providers/`.
+
+  - Create empty test files: `tests/utils/test_config.py`, `tests/utils/test_rate_limit.py`,
+  `tests/providers/test_openai_provider.py`.'
+outputs:
+- '`tests/` directory and basic test file structure created.'

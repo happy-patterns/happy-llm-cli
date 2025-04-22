@@ -1,0 +1,13 @@
+# yaml-language-server: $schema none
+id: orchestrate_1.2_init_runbook
+name: "Initialize runbook.yaml"
+status: DONE
+type: MANUAL
+depends_on:
+  - orchestrate_1.1_setup_dirs
+manual_instructions:
+  - "Create the file `orchestration/runbook.yaml`."
+  - "Copy the list of tasks and their fields into `runbook.yaml` based on the initial plan."
+  - "Ensure each task entry points to the correct `task_detail_file` under `orchestration/tasks/`."
+outputs:
+  - "`orchestration/runbook.yaml` is created and populated with initial task entries."

@@ -1,0 +1,13 @@
+id: app_4.1.5
+name: Commit Configuration Utility
+status: PENDING
+type: MANUAL
+depends_on:
+- app_4.1.4
+- app_1.3.6
+manual_instructions:
+- "Stage `happy_llm_cli/utils/config.py` and any updates to `requirements.txt`.\n\
+  Run:\n  git add happy_llm_cli/utils/config.py requirements.txt\n  git commit -m\
+  \ \"feat: Add configuration loading utility (load_api_key)\""
+outputs:
+- Configuration utility (`config.py`) committed to Git.

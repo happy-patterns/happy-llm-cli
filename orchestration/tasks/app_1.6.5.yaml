@@ -1,0 +1,11 @@
+id: app_1.6.5
+name: Create Placeholder CHANGELOG.md
+status: PENDING
+type: MANUAL
+depends_on:
+- app_1.6.1
+- app_1.3.1
+manual_instructions:
+- "Add `docs/CHANGELOG.md` with:\n  # Changelog\n\n  ## [Unreleased]\nCommit it."
+outputs:
+- '`docs/CHANGELOG.md` created and committed.'

@@ -1,0 +1,11 @@
+id: app_1.5.1
+name: Create .env File (Host)
+status: PENDING
+type: MANUAL
+depends_on:
+- app_1.3.3
+manual_instructions:
+- "On the host create `.env` with:\n  OPENAI_API_KEY=sk-YourActualKeyPlaceholder\n\
+  Ensure it\u2019s ignored by Git."
+outputs:
+- '`.env` created on host.'

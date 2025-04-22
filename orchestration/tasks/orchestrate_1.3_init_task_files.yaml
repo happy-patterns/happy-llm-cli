@@ -1,0 +1,17 @@
+# yaml-language-server: $schema none
+id: orchestrate_1.3_init_task_files
+name: "Create empty task detail YAML files"
+status: DONE
+type: MANUAL
+depends_on:
+  - orchestrate_1.2_init_runbook
+manual_instructions:
+  - "For each task listed in `orchestration/runbook.yaml`, create an empty detail file under `orchestration/tasks/`."
+  - "Name each file according to its `id` (e.g., `orchestrate_2_yaml_utils.yaml`)."
+  - "Populate each file with the following stub fields:"
+  - "id: <task_id>"
+  - "name: <task name>"
+  - "status: PENDING"
+  - "type: <task type>"
+outputs:
+  - "Empty task detail YAML files are created under `orchestration/tasks/`."

@@ -1,0 +1,25 @@
+id: app_6.1.6
+name: Generate Unit Tests for Rate Limit Util
+status: PENDING
+type: AI_ASSISTED
+depends_on:
+- app_4.2.3
+- app_2.4.3
+- app_6.1.2
+ai_details:
+  model: o4-mini
+  prompt: "Goal: Generate ONLY the Python code snippet for Pytest unit tests for the\
+    \ `retry_api_call` function.\nContext:\n  - Target file: `tests/utils/test_rate_limit.py`.\n\
+    \  - Function to test: `retry_api_call` from `happy_llm_cli.utils.rate_limit`.\n\
+    \  - Needs mocking for the callable `func`, `time.sleep`, and `RateLimitError`\
+    \ from `happy_llm_cli.providers.exceptions`. Use `mocker` fixture.\n  - Test Cases:\n\
+    \      1. Success on first try.\n      2. Success after 1 retry (func raises `RateLimitError`\
+    \ once, then succeeds).\n      3. Failure after max retries (func always raises\
+    \ `RateLimitError`). Expect `RateLimitError`.\n      4. Immediate failure (func\
+    \ raises other `Exception` like `ValueError`). Expect `ValueError`.\nInstructions:\n\
+    \  - Import `pytest`, `time`, `retry_api_call`, `RateLimitError`, `ValueError`.\n\
+    \  - Mock `time.sleep` using `mocker`.\n  - Write test functions for each case,\
+    \ asserting results and mock call counts.\nOutput Format: Python code snippet\
+    \ containing the test functions and necessary imports."
+outputs:
+- Python code snippet for `test_rate_limit.py` generated.

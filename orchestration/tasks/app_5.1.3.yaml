@@ -1,0 +1,13 @@
+id: app_5.1.3
+name: Ensure `typer` Dependency
+status: PENDING
+type: MANUAL
+depends_on:
+- app_5.1.2
+manual_instructions:
+- 'Verify `typer` (or `typer[all]`) is listed in `requirements.txt`.
+
+  If missing, add it and rebuild or install dependencies.'
+outputs:
+- '`typer` confirmed/added to project dependencies.'
+- Development environment updated with `typer`.

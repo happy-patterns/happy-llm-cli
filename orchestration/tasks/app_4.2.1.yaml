@@ -1,0 +1,22 @@
+id: app_4.2.1
+name: Generate retry_api_call Function Code Snippet
+status: PENDING
+type: AI_ASSISTED
+depends_on:
+- app_1.2.2
+- app_2.4.3
+ai_details:
+  model: o4-mini
+  prompt: "Goal: Generate ONLY the Python code snippet for the `retry_api_call` utility.\n\
+    Context:\n  - Target file: `happy_llm_cli/utils/rate_limit.py`.\n  - Signature:\
+    \ `retry_api_call(func: Callable[[], T], retries: int = DEFAULT_MAX_RETRIES, delay:\
+    \ int = DEFAULT_RETRY_DELAY_SECONDS, retry_on_exception: Type[Exception] = RateLimitError)\
+    \ -> T`.\n  - Defaults: `DEFAULT_MAX_RETRIES = 3`, `DEFAULT_RETRY_DELAY_SECONDS\
+    \ = 2`.\n  - Logic: Retry on `retry_on_exception`, log attempts, re-raise others,\
+    \ re-raise after max retries.\nInstructions:\n  - Import `time`, `logging`, `Callable`,\
+    \ `TypeVar`, `Type`, `RateLimitError`.\n  - Define `T`, constants, logger, and\
+    \ function with loop and sleep.\n  - Use `logger` for retry and failure messages.\n\
+    \  - DO NOT include other code.\nOutput Format: Python code snippet with imports,\
+    \ constants, type var, logger, function."
+outputs:
+- Python code snippet for `retry_api_call` generated.

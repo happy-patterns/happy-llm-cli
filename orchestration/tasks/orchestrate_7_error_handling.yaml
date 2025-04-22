@@ -1,0 +1,28 @@
+ai_details:
+  model: o4-mini
+  prompt: 'Enhance `orchestration/run.py` to:
+
+    - On exceptions or user-marked errors, stop execution and log an `ERROR_TASK`
+    event.
+
+    - Add an `issues` list to the task detail YAML, appending an entry with `timestamp`,
+    `type`, and `detail` when errors occur.
+
+    - Require manual intervention to change a task from `ERROR` back to `READY`.
+
+    - Re-evaluate dependencies so that tasks whose prerequisites are now `DONE` become
+    `READY`.
+
+    '
+depends_on:
+- orchestrate_6_ai_handler
+id: orchestrate_7_error_handling
+issues:
+- detail: ''
+  timestamp: '2025-04-21T15:45:04.995370Z'
+  type: AI_RESPONSE_REJECTED
+name: Implement error handling and issues tracking
+outputs:
+- Error handling and issues tracking implemented in `orchestration/run.py`.
+status: DONE
+type: AI_ASSISTED

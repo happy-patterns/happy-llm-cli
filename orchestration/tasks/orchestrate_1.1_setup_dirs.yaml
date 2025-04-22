@@ -1,0 +1,11 @@
+# yaml-language-server: $schema none
+id: orchestrate_1.1_setup_dirs
+name: "Setup directory structure"
+status: DONE
+type: MANUAL
+depends_on: []
+manual_instructions:
+  - "Create the `orchestration/` directory in the project root."
+  - "Create subdirectories: `orchestration/tasks/`, `orchestration/logs/`, and `orchestration/prompt_templates/`."
+outputs:
+  - "Directories `orchestration/`, `orchestration/tasks/`, `orchestration/logs/`, and `orchestration/prompt_templates/` are created."

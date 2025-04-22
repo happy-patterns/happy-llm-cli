@@ -1,0 +1,10 @@
+id: app_3.5.2
+name: '[Optional] Review Logging Code Snippets'
+status: PENDING
+type: MANUAL
+depends_on:
+- app_3.5.1
+manual_instructions:
+- Verify logging setup, levels, and message clarity.
+outputs:
+- Logging snippets reviewed.

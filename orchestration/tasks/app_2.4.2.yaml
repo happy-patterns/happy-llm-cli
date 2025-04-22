@@ -1,0 +1,11 @@
+id: app_2.4.2
+name: '[Optional] Review Provider Exceptions Code Snippet'
+status: PENDING
+type: MANUAL
+depends_on:
+- app_2.4.1
+manual_instructions:
+- "If proceeding: Manually review the generated exception code snippet:\n  - Verify\
+  \ class names, inheritance, and minimality."
+outputs:
+- '[Optional] Code snippet for exceptions reviewed and approved/corrected.'

@@ -1,0 +1,16 @@
+id: app_2.1.3
+name: Write AbstractProviderAdapter to base.py
+status: PENDING
+type: MANUAL
+depends_on:
+- app_2.1.2
+- app_1.2.2
+manual_instructions:
+- 'Create or open the file `happy_llm_cli/providers/base.py`.
+
+  Write the reviewed `AbstractProviderAdapter` code snippet
+
+  (including imports) into the file.'
+outputs:
+- '`happy_llm_cli/providers/base.py` created/updated with `AbstractProviderAdapter`
+  definition.'

@@ -1,0 +1,12 @@
+id: app_3.1.3
+name: Write OpenAIProvider Skeleton to File
+status: PENDING
+type: MANUAL
+depends_on:
+- app_3.1.2
+- app_1.2.2
+manual_instructions:
+- Create `happy_llm_cli/providers/openai_provider.py` and insert reviewed skeleton
+  code.
+outputs:
+- '`openai_provider.py` created with skeleton.'

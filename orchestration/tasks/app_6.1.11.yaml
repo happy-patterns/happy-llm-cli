@@ -1,0 +1,13 @@
+id: app_6.1.11
+name: Write Unit Tests for OpenAI Provider
+status: PENDING
+type: MANUAL
+depends_on:
+- app_6.1.1
+- app_6.1.10
+manual_instructions:
+- '- Open `tests/providers/test_openai_provider.py`.
+
+  - Write the reviewed test code into the file.'
+outputs:
+- '`tests/providers/test_openai_provider.py` populated with tests.'

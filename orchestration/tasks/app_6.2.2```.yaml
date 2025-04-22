@@ -1,0 +1,8 @@
+id: app_6.2.2```
+name: null
+status: PENDING
+type: MANUAL
+depends_on:
+- orchestrate_8_refine
+manual_instructions:
+- ''

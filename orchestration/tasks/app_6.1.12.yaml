@@ -1,0 +1,18 @@
+id: app_6.1.12
+name: Commit Unit Tests
+status: PENDING
+type: MANUAL
+depends_on:
+- app_6.1.5
+- app_6.1.8
+- app_6.1.11
+- app_6.1.2
+- app_1.3.6
+manual_instructions:
+- '- Stage the `tests/` directory and any changes to dependency files.
+
+  - Run `git add tests/ requirements-dev.txt pyproject.toml`.
+
+  - Run `git commit -m \"test: Add unit tests for utilities and OpenAI provider\"`.'
+outputs:
+- Unit tests committed to Git.

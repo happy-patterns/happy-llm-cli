@@ -1,0 +1,13 @@
+id: app_5.1.5
+name: Commit Typer Skeleton
+status: PENDING
+type: MANUAL
+depends_on:
+- app_5.1.4
+- app_1.3.6
+manual_instructions:
+- "Stage `happy_llm_cli/cli.py` and any changes to `requirements.txt`:\n  git add\
+  \ happy_llm_cli/cli.py requirements.txt\n  git commit -m \"feat: Add basic Typer\
+  \ CLI structure\""
+outputs:
+- Typer skeleton (`cli.py`) committed to Git.

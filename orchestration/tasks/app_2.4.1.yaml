@@ -1,0 +1,18 @@
+id: app_2.4.1
+name: '[Optional] Generate Provider Exceptions Code Snippet'
+status: PENDING
+type: AI_ASSISTED
+depends_on:
+- app_1.2.2
+ai_details:
+  model: gpt-4.1-mini
+  prompt: "Goal: Generate ONLY the Python code snippet for custom exception classes.\n\
+    Context:\n  - Target file: `happy_llm_cli/providers/exceptions.py`.\n  - Required\
+    \ exceptions: `ProviderError(Exception)`,\n    `AuthenticationError(ProviderError)`,\n\
+    \    `RateLimitError(ProviderError)`,\n    `ProviderResponseError(ProviderError)`.\n\
+    \  - Naming: PascalCase.\nInstructions:\n  - Define the four specified exception\
+    \ classes with the correct inheritance.\n  - Keep definitions minimal (`pass`\
+    \ or simple `__init__(self, message=None)`).\n  - DO NOT include any other code.\n\
+    Output Format: Python code snippet for the exception class definitions."
+outputs:
+- '[Optional] Python code snippet for custom exceptions generated.'

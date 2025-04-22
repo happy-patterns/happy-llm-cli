@@ -1,0 +1,14 @@
+id: app_5.1.4
+name: Write cli.py File
+status: PENDING
+type: MANUAL
+depends_on:
+- app_5.1.2
+- app_5.1.3
+- app_1.2.2
+manual_instructions:
+- 'Create `happy_llm_cli/cli.py` and write the reviewed Typer skeleton
+
+  code into the file.'
+outputs:
+- '`happy_llm_cli/cli.py` created with Typer skeleton.'

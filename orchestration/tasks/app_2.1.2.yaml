@@ -1,0 +1,16 @@
+id: app_2.1.2
+name: Review AbstractProviderAdapter Code Snippet
+status: PENDING
+type: MANUAL
+depends_on:
+- app_2.1.1
+manual_instructions:
+- "Manually review the generated code snippet against the requirements\nand review\
+  \ points:\n  - Verify exact class name: `AbstractProviderAdapter`.\n  - Verify inheritance\
+  \ from `abc.ABC`.\n  - Verify exact method signature:\n    `complete_chat(self,\
+  \ request: 'ChatRequest') -> 'ChatResponse'`.\n  - Verify `@abstractmethod` decorator\
+  \ is used.\n  - Verify necessary imports (`abc`).\n  - Ensure no extra methods,\
+  \ attributes, or implementation logic were added.\n  - Check forward references\
+  \ ('ChatRequest', 'ChatResponse') are used correctly."
+outputs:
+- Code snippet for `AbstractProviderAdapter` reviewed and approved/corrected.

@@ -1,0 +1,12 @@
+id: app_3.4.4
+name: Commit complete_chat Implementation
+status: PENDING
+type: MANUAL
+depends_on:
+- app_3.4.3
+- app_3.1.5
+manual_instructions:
+- "Stage and commit `openai_provider.py` updates:\nRun:\n  git add happy_llm_cli/providers/openai_provider.py\n\
+  \  git commit -m \"feat: Implement complete_chat in OpenAIProvider\""
+outputs:
+- '`complete_chat` implementation committed.'

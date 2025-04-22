@@ -1,0 +1,10 @@
+id: app_1.3.3
+name: Write .gitignore File
+status: PENDING
+type: MANUAL
+depends_on:
+- app_1.3.2
+manual_instructions:
+- Write the generated content to `.gitignore` in the project root.
+outputs:
+- '`.gitignore` created in project root.'

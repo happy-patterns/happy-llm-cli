@@ -1,0 +1,10 @@
+id: app_1.3.5
+name: Write Initial README.md File
+status: PENDING
+type: MANUAL
+depends_on:
+- app_1.3.4
+manual_instructions:
+- Write the prepared content to `README.md` in the project root.
+outputs:
+- '`README.md` created in project root.'

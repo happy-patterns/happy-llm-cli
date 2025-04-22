@@ -1,0 +1,14 @@
+id: app_4.1.4
+name: Write config.py File
+status: PENDING
+type: MANUAL
+depends_on:
+- app_4.1.2
+- app_4.1.3
+- app_1.2.2
+manual_instructions:
+- 'Create `happy_llm_cli/utils/config.py` and write the reviewed
+
+  `load_api_key` function code (including imports).'
+outputs:
+- '`happy_llm_cli/utils/config.py` created with `load_api_key` function.'

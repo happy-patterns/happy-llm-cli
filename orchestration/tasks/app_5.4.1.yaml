@@ -1,0 +1,14 @@
+id: app_5.4.1
+name: Generate Console Script TOML Snippet
+status: PENDING
+type: AI_ASSISTED
+depends_on:
+- app_5.2.16
+ai_details:
+  model: gpt-3.5-turbo
+  prompt: "Goal: Generate only the TOML snippet for `[project.scripts]`.\nContext:\n\
+    \  - Script name: `happy_llm`\n  - Entry: `happy_llm_cli.cli:app`\nInstructions:\n\
+    \  - Provide a `[project.scripts]` table with the mapping.\nOutput Format: TOML\
+    \ snippet."
+outputs:
+- TOML snippet for console script generated.
